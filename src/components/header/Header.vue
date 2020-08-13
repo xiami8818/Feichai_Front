@@ -1,10 +1,19 @@
 <template>
     <div id="header">
         <img src="../../assets/logo.png" id="ico" />
-        <span id="title">废柴工作室</span>
+        <span id="title" v-if="computer">废柴工作室</span>
+          <a class="menu" href="#" v-if="computer">首页</a>
+          <a class="menu" href="#" v-if="computer">OJ平台</a>
+          <a class="menu" href="#" v-if="computer">社团信息</a>
+          <a class="menu" href="#" v-if="computer">视频解析</a>
+          <a class="menu" href="#" v-if="computer">关于我们</a>
         <button class="hamburger" v-if="phone">
             <span></span>
         </button>
+      <div id="login">
+        <img src="../../assets/unLogin.jpg" v-if="computer">
+        <a>未登录</a>
+      </div>
     </div>
 </template>
 
@@ -16,24 +25,32 @@
         },
         computed: {
             phone(){
-                if(document.documentElement.clientWidth>document.documentElement.clientHeight){
-                    return false;
-                }else{
+                if(document.documentElement.clientWidth<document.documentElement.clientHeight){
                     return true;
+                }else{
+                    return false;
                 }
+            },
+            computer(){
+              if(document.documentElement.clientWidth>=document.documentElement.clientHeight) {
+                return true;
+              }
+              else{
+                return false;
+              }
             }
         }
     }
 </script>
 
 <style scoped>
-    div {
+    #header {
         position: relative;
         width: 100%;
         height: 14vh;
         top: 0px;
         left: 0px;
-        background-color: antiquewhite;
+        background-color: darkgray;
     }
     #ico {
         position: relative;
@@ -45,6 +62,10 @@
     @font-face {
         font-family: hjlzt;
         src:url("../../assets/font/hjlzt.ttf");
+    }
+    @font-face {
+      font-family: daimengti;
+      src: url("../../assets/font/daimengti.ttf");
     }
     #title {
         position: relative;
@@ -59,7 +80,7 @@
         position: absolute;
         font-size: 0;
         top: 4vh;
-        left: 78vw;
+        left: 64vw;
         width: 48px;
         height: 48px;
         border: none;
@@ -91,5 +112,37 @@
     }
     .hamburger span:after {
         bottom: -10px;/*相对于中间的span下移10px*/
+    }
+    .menu {
+      position: relative;
+      font-family: daimengti;
+      font-size: 1.6vw;
+      margin-left: 2vw;
+      color: aliceblue;
+      top: -6vh;
+      left: 12vw;
+      text-decoration-line: none;
+    }
+    .menu:hover {
+      font-size: 1.4vw;
+      color: coral;
+    }
+    #login {
+      position: absolute;
+      top: 0vh;
+      left: 80vw;
+      height: 14vh;
+      width: 20vw;
+    }
+    #login img {
+      position: relative;
+      height: 80%;
+      top: 10%;
+      left: -6vw;
+    }
+    #login a {
+      position: absolute;
+      top: 6vh;
+      left: 0vw;
     }
 </style>
