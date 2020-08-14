@@ -25,19 +25,10 @@
         },
         computed: {
             phone(){
-                if(document.documentElement.clientWidth<document.documentElement.clientHeight){
-                    return true;
-                }else{
-                    return false;
-                }
+              return document.documentElement.clientWidth<document.documentElement.clientHeight;
             },
-            computer(){
-              if(document.documentElement.clientWidth>=document.documentElement.clientHeight) {
-                return true;
-              }
-              else{
-                return false;
-              }
+            computer() {
+              return document.documentElement.clientWidth >= document.documentElement.clientHeight;
             }
         }
     }
@@ -124,7 +115,7 @@
       text-decoration-line: none;
     }
     .menu:hover {
-      font-size: 1.4vw;
+      font-size: 1.8vw;
       color: coral;
     }
     #login {
