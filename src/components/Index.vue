@@ -48,13 +48,14 @@ export default {
 #welcome{
   position: absolute;
   font-size: 6vw;
-  top: calc(50% - 8vw);
-  left: 33vw;
+  left: 34vw;
+  top: calc(50vh - 10vw);
 }
 #particles-js {
   position: absolute;
+  top: 0px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 </style>

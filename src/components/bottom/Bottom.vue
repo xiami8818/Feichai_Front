@@ -17,11 +17,12 @@ name: "Bottom"
     top: calc(100% - 4rem);
     height: 4rem;
     background-color: gray;
+    left: 0px;
   }
   #icp {
     position: absolute;
     color: antiquewhite;
-    left: 45vw;
+    left: calc(50% - 4rem);
     top: 35%;
     font-size: 0.8rem;
   }
