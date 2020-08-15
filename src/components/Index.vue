@@ -6,9 +6,9 @@
         color="#dedede"
         :particleOpacity="0.7"
         :particlesNumber="60"
-        shapeType="circle"
+        shapeType="triangle"
         :particleSize="4"
-        linesColor="#fff"
+        linesColor="#7b68ee"
         :linesWidth="1"
         :lineLinked="true"
         :lineOpacity="0.4"
@@ -17,7 +17,7 @@
         :hoverEffect="true"
         hoverMode="grab"
         :clickEffect="true"
-        clickMode="push"
+        clickMode="repulse"
     ></vue-particles>
     <Bottom></Bottom>
   </div>
