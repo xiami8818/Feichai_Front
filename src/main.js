@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Login from './components/login/Login'
 import VueParticles from "vue-particles";
 Vue.use(VueParticles)
 Vue.config.productionTip = false
@@ -9,7 +8,6 @@ Vue.config.productionTip = false
 const routes = [
   {name: 'login',
     path: '/',
-    components: Login
   }
 ]
 new Vue({

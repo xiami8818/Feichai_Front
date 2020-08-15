@@ -1,7 +1,8 @@
 <template>
   <div class="index">
-    <Header></Header>
+
     <p id="welcome">WELCOME</p>
+    <Header id="header"></Header>
     <vue-particles v-if="computer"
         color="#dedede"
         :particleOpacity="0.7"
@@ -19,6 +20,7 @@
         :clickEffect="true"
         clickMode="repulse"
     ></vue-particles>
+    <Login v-if="loginView"></Login>
     <Bottom></Bottom>
   </div>
 </template>
@@ -26,11 +28,13 @@
 <script>
 import Header from "@/components/header/Header";
 import Bottom from "@/components/bottom/Bottom";
+import Login from "./login/Login";
 export default {
   name: 'Index',
   components: {
     Header,
-    Bottom
+    Bottom,
+    Login
   },
   computed: {
     phone(){
@@ -39,6 +43,16 @@ export default {
     computer() {
       return document.documentElement.clientWidth >= document.documentElement.clientHeight;
     }
+  },
+  methods: {
+    showView(){
+      this.loginView = !this.loginView;
+    }
+  },
+  data(){
+    return {
+      loginView : false
+    };
   }
 }
 </script>
@@ -56,6 +70,10 @@ export default {
   top: 0px;
   width: 100%;
   height: 100vh;
+  z-index: 1;
 }
+  #header {
+    z-index: 2;
+  }
 
 </style>

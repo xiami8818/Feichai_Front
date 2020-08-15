@@ -10,9 +10,9 @@
         <button class="hamburger" v-if="phone">
             <span></span>
         </button>
-      <div id="login">
+      <div id="loginDiv">
         <img src="../../assets/unLogin.jpg" v-if="computer">
-        <a>未登录</a>
+        <span id="loginButton" @click="showLogin()">未登录</span>
       </div>
     </div>
 </template>
@@ -21,7 +21,9 @@
     export default {
         name: "Header",
         methods: {
-
+            showLogin(){
+                this.$parent.loginView = !this.$parent.loginView;
+            }
         },
         computed: {
             phone(){
@@ -30,7 +32,13 @@
             computer() {
               return document.documentElement.clientWidth >= document.documentElement.clientHeight;
             }
-        }
+        },
+        data(){
+            return {
+
+            }
+        },
+        inject:['showView']
     }
 </script>
 
@@ -118,22 +126,28 @@
       font-size: 1.8vw;
       color: coral;
     }
-    #login {
+    #loginDiv {
       position: absolute;
       top: 0vh;
       left: 80vw;
       height: 14vh;
       width: 20vw;
     }
-    #login img {
+    #loginDiv img {
       position: relative;
       height: 80%;
       top: 10%;
       left: -6vw;
     }
-    #login a {
+    #loginDiv span {
       position: absolute;
       top: 6vh;
       left: 0vw;
+    }
+    #loginDiv span:hover {
+        color: coral;
+    }
+    #loginDiv span {
+        cursor: cell;
     }
 </style>
