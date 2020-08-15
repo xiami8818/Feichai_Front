@@ -12,8 +12,9 @@ name: "Bottom"
 
 <style scoped>
   #bottom {
-    position: relative;
+    position: absolute;
     width: 100%;
+    top: calc(100% - 4rem);
     height: 4rem;
     background-color: gray;
   }

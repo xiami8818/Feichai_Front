@@ -1,7 +1,8 @@
 <template>
   <div class="index">
     <Header></Header>
-    <vue-particles
+    <p id="welcome">WELCOME</p>
+    <vue-particles v-if="computer"
         color="#dedede"
         :particleOpacity="0.7"
         :particlesNumber="60"
@@ -18,7 +19,6 @@
         :clickEffect="true"
         clickMode="push"
     ></vue-particles>
-
     <Bottom></Bottom>
   </div>
 </template>
@@ -31,17 +31,30 @@ export default {
   components: {
     Header,
     Bottom
+  },
+  computed: {
+    phone(){
+      return document.documentElement.clientWidth<document.documentElement.clientHeight;
+    },
+    computer() {
+      return document.documentElement.clientWidth >= document.documentElement.clientHeight;
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#content {
- position: relative;
+#welcome{
+  position: absolute;
+  font-size: 6vw;
+  top: calc(50% - 8vw);
+  left: 33vw;
+}
+#particles-js {
+  position: absolute;
   width: 100%;
-  height: 30rem;
-  background: transparent !important;
+  height: 100%;
 }
 
 </style>

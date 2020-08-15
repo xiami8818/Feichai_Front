@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <Index id="index"></Index>
+    <Index></Index>
+
   </div>
 </template>
 
@@ -12,6 +13,7 @@
       Index
     }
   }
+
 
 </script>
 
