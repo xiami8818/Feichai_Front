@@ -1,7 +1,6 @@
 <template>
   <div class="index">
-
-    <p id="welcome">WELCOME</p>
+    <p id="welcome" @click="showView()">WELCOME</p>
     <Header id="header"></Header>
     <vue-particles v-if="computer"
         color="#dedede"
@@ -19,6 +18,7 @@
         hoverMode="grab"
         :clickEffect="true"
         clickMode="repulse"
+        @click="showView()"
     ></vue-particles>
     <Login v-if="loginView"></Login>
     <Bottom></Bottom>

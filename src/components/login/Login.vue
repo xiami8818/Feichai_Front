@@ -2,21 +2,46 @@
     <div id="login">
         <div class="loginInfo">
             <label class="layui-form-label login-form"><i class="iconfont">&#xe6b8;</i></label>
-            <input type="text" name="username" lay-verify="required" placeholder="请输入您的手机号" autocomplete="off" class="layui-input">
+            <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="请输入您的手机号" autocomplete="off" class="layui-input">
         </div>
         <div class="loginInfo">
             <label class="layui-form-label login-form"><i class="iconfont">&#xe82b;</i></label>
-            <input type="text" name="username" lay-verify="required" placeholder="请输入您的密码" autocomplete="off" class="layui-input">
+            <input type="password" v-model="password" name="username" lay-verify="required" placeholder="请输入您的密码" autocomplete="off" class="layui-input">
         </div>
-        <button>登录</button>
+        <button @click="login">登录</button>
+        <p>{{msg}}</p>
     </div>
 </template>
     <div>
 
     </div>
 <script>
+import axios from 'axios';
     export default {
-        name: "Login"
+        name: "Login",
+      data(){
+          return {
+            phone:'',
+            password:'',
+            msg:''
+          }
+      },
+      methods: {
+          login() {
+            // eslint-disable-next-line no-unused-vars
+            const that = this;
+            //let url = "http://localhost:80/login";
+            axios({
+              method: 'POST',
+              url:'http://localhost/login?phone='+this.phone+'&password='+this.password,
+            }).then(function (res){
+              console.log(res);
+              if(res.data=='succeed'){
+                that.$parent.loginView = false;
+              }
+            })
+          }
+      }
     }
 </script>
 
@@ -30,6 +55,9 @@
   background-color: cornsilk;
   margin: 0 auto;
   z-index: 2;
+}
+#login p {
+
 }
 @font-face {
     font-family: 'iconfont';
@@ -63,7 +91,7 @@
     position: relative;
     width: 80%;
     left: 10%;
-    margin-top: 2rem;
+    margin-top: 3rem;
     height: 4rem;
 }
 </style>

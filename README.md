@@ -1,5 +1,11 @@
 # feichai_front
 
+## 依赖库
+```
+npm install vue-particles --save-dev
+
+npm install axios --save
+```
 ## Project setup
 ```
 npm install

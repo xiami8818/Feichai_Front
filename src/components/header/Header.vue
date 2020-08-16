@@ -5,14 +5,12 @@
           <a class="menu" href="#" v-if="computer">首页</a>
           <a class="menu" href="#" v-if="computer">OJ平台</a>
           <a class="menu" href="#" v-if="computer">社团信息</a>
-          <a class="menu" href="#" v-if="computer">视频解析</a>
+          <a class="menu" @click="analyse" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
-        <button class="hamburger" v-if="phone">
-            <span></span>
-        </button>
       <div id="loginDiv">
-        <img src="../../assets/unLogin.jpg" v-if="computer">
-        <span id="loginButton" @click="showLogin()">未登录</span>
+        <img src="../../assets/unLogin.jpg">
+        <span id="loginButton" @click="showLogin()">登录</span>
+        <span id="registButton">注册</span>
       </div>
     </div>
 </template>
@@ -23,6 +21,10 @@
         methods: {
             showLogin(){
                 this.$parent.loginView = !this.$parent.loginView;
+            },
+            analyse(){
+              window.location.href='baidu.com';
+              window.open();
             }
         },
         computed: {
@@ -73,45 +75,6 @@
         font-family: hjlzt;
         font-size: 2vw;
     }
-    .hamburger {
-        background-color: rgba(0,0,0,0);
-        display: block;
-        position: absolute;
-        font-size: 0;
-        top: 4vh;
-        left: 64vw;
-        width: 48px;
-        height: 48px;
-        border: none;
-        cursor: pointer;
-    }
-    .hamburger:focus {
-        outline: none;
-    }
-    .hamburger span {
-        display: block;
-        position: absolute;
-        height: 4px;
-        top: 22px;
-        left: 8px;
-        right: 8px;
-        background-color: #fff;
-    }
-    .hamburger span:before,
-    .hamburger span:after {/*before和after与span重合，需要进行上移和下移*/
-        content: "";
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 4px;
-        background-color: #fff;
-    }
-    .hamburger span:before {
-        top: -10px;/*相对于中间的span上移10px*/
-    }
-    .hamburger span:after {
-        bottom: -10px;/*相对于中间的span下移10px*/
-    }
     .menu {
       position: relative;
       font-family: daimengti;
@@ -129,20 +92,24 @@
     #loginDiv {
       position: absolute;
       top: 0vh;
-      left: 80vw;
-      height: 14vh;
+      height: 100%;
       width: 20vw;
+      left: calc(100% - 24vw);
     }
     #loginDiv img {
       position: relative;
       height: 80%;
       top: 10%;
-      left: -6vw;
+      left: 0vw;
     }
     #loginDiv span {
-      position: absolute;
-      top: 6vh;
+      position: relative;
+      top: 0;
       left: 0vw;
+      margin-left: 1rem;
+      height: 100%;
+      font-size: 1.6rem;
+      font-family: daimengti;
     }
     #loginDiv span:hover {
         color: coral;
