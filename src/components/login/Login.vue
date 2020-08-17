@@ -33,7 +33,7 @@ import axios from 'axios';
             //let url = "http://localhost:80/login";
             axios({
               method: 'POST',
-              url:'http://localhost/login?phone='+this.phone+'&password='+this.password,
+              url:'http://47.100.137.63:8080/login?phone='+this.phone+'&password='+this.password,
             }).then(function (res){
               console.log(res);
               if(res.data=='succeed'){

@@ -9,13 +9,12 @@ export default {
 name: "Bottom"
 }
 </script>
-
 <style scoped>
   #bottom {
     position: absolute;
     width: 100%;
     top: calc(100% - 4rem);
-    height: 4rem;
+    height: 10vh;
     background-color: gray;
     left: 0px;
   }

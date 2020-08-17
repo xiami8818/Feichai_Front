@@ -7,10 +7,14 @@
           <a class="menu" href="#" v-if="computer">社团信息</a>
           <a class="menu" @click="analyse" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
-      <div id="loginDiv">
-        <img src="../../assets/unLogin.jpg">
-        <span id="loginButton" @click="showLogin()">登录</span>
-        <span id="registButton">注册</span>
+      <div id="loginDivC" v-if="computer">
+        <img src="../../assets/unLogin.jpg" />
+        <span @click="showLogin()">登录</span>
+        <span>注册</span>
+      </div>
+      <div id="loginDivP" v-if="phone">
+        <span @click="showLogin()">登录</span>
+        <span>注册</span>
       </div>
     </div>
 </template>
@@ -23,7 +27,7 @@
                 this.$parent.loginView = !this.$parent.loginView;
             },
             analyse(){
-              window.location.href='baidu.com';
+              window.location.href='http://feichai.xyz/analyse.html';
               window.open();
             }
         },
@@ -86,35 +90,45 @@
       text-decoration-line: none;
     }
     .menu:hover {
-      font-size: 1.8vw;
       color: coral;
     }
-    #loginDiv {
+    #loginDivC {
       position: absolute;
-      top: 0vh;
       height: 100%;
-      width: 20vw;
-      left: calc(100% - 24vw);
+      top: 0;
+      left: calc(100% - 25vw);
     }
-    #loginDiv img {
+    #loginDivC img {
       position: relative;
       height: 80%;
       top: 10%;
       left: 0vw;
     }
-    #loginDiv span {
+    #loginDivC span {
       position: relative;
       top: 0;
       left: 0vw;
       margin-left: 1rem;
       height: 100%;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-family: daimengti;
     }
-    #loginDiv span:hover {
+    #loginDivC span:hover {
         color: coral;
     }
-    #loginDiv span {
+    #loginDivC span {
         cursor: cell;
     }
+    #loginDivP {
+      position: absolute;
+      top: 40%;
+      height: auto;
+      left: 66%;
+      font-size: 5vw;
+      font-family: daimengti;
+    }
+    #loginDivP span{
+      margin-left: 2vw;
+    }
+
 </style>
