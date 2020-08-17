@@ -1,18 +1,173 @@
 <template>
   <div class="index">
-
+    <p class="welcome" v-if="computer">WELCOME</p>
+    <p class="welcome" v-if="phone">废柴工作室</p>
+    <Header id="header"></Header>
+    <button class="hamburger" v-if="phone" @click="showMenu">
+      <span @click="showMenu"></span>
+    </button>
+    <div v-if="menu" id="menu">
+      <a>OJ 平台</a>
+      <hr />
+      <a>社团信息</a>
+      <hr />
+      <a href="http://feichai.xyz/analyse.html">视频解析</a>
+      <hr />
+      <a>关于我们</a>
+      <img src="../assets/up.png" @click="closeMenu" />
+    </div>
+    <vue-particles v-if="computer"
+        color="#dedede"
+        :particleOpacity="0.7"
+        :particlesNumber="60"
+        shapeType="triangle"
+        :particleSize="4"
+        linesColor="#7b68ee"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="2"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="repulse"
+        @click="showView()"
+    ></vue-particles>
+    <Login v-if="loginView"></Login>
+    <Bottom></Bottom>
   </div>
 </template>
 
 <script>
+import Header from "@/components/header/Header";
+import Bottom from "@/components/bottom/Bottom";
+import Login from "./login/Login";
 export default {
-  name: 'Index'
+  name: 'Index',
+  components: {
+    Header,
+    Bottom,
+    Login
+  },
+  computed: {
+    phone(){
+      return document.documentElement.clientWidth<document.documentElement.clientHeight;
+    },
+    computer() {
+      return document.documentElement.clientWidth >= document.documentElement.clientHeight;
+    }
+  },
+  methods: {
+    showView(){
+      this.loginView = !this.loginView;
+    },
+    showMenu(){
+      this.menu = true;
+    },
+    closeMenu(){
+      this.menu = false;
+    }
+  },
+  data(){
+    return {
+      loginView : false,
+      menu:false
+    };
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.index{
-
+@font-face {
+  font-family: hjlzt;
+  src:url("../assets/font/hjlzt.ttf");
 }
+@font-face {
+  font-family: daimengti;
+  src: url("../assets/font/daimengti.ttf");
+}
+a {
+  text-decoration-line: none;
+}
+.welcome{
+  font-family: hjlzt;
+  position: absolute;
+  font-size: 6vw;
+  left: 34vw;
+  top: calc(50vh - 10vw);
+  z-index: 2;
+}
+#particles-js {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+  #header {
+    z-index: 2;
+  }
+.hamburger {
+  background-color: rgba(0,0,0,0);
+  display: block;
+  position: absolute;
+  font-size: 0;
+  top: 5vh;
+  left: 52vw;
+  width: 48px;
+  height: 48px;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 100%;
+}
+.hamburger:focus {
+  outline: none;
+}
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  top: 22px;
+  left: 8px;
+  right: 8px;
+  background-color: #fff;
+}
+.hamburger span:before,
+.hamburger span:after {/*before和after与span重合，需要进行上移和下移*/
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+}
+.hamburger span:before {
+  top: -10px;/*相对于中间的span上移10px*/
+}
+.hamburger span:after {
+  bottom: -10px;/*相对于中间的span下移10px*/
+}
+#menu {
+  background-color: rgba(0,0,0,0.6);
+  position: absolute;
+  top: 14vh;
+  height: 38vh;
+  width: 60%;
+  left: 20%;
+  z-index: 3;
+}
+  #menu a {
+    color: bisque;
+    margin-left: calc(50% - 16vw);
+    font-size: 8vw;
+  }
+  #menu img {
+    position: absolute;
+    top: 39vh;
+    left: calc(100% - 16vw);
+    width: 10vw;
+  }
 </style>

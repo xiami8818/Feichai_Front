@@ -1,18 +1,24 @@
 <template>
   <div id="app">
-    <Header id="header"></Header>
+    <Index></Index>
+
   </div>
 </template>
 
 <script>
-  import Header from "./components/header/Header";
+  import Index from "@/components/Index";
   export default {
   name: 'App',
-    components: {Header}
+    components: {
+      Index
+    }
   }
+
 
 </script>
 
 <style>
-
+#app {
+  background: transparent !important;
+}
 </style>

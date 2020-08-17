@@ -5,14 +5,16 @@
           <a class="menu" href="#" v-if="computer">首页</a>
           <a class="menu" href="#" v-if="computer">OJ平台</a>
           <a class="menu" href="#" v-if="computer">社团信息</a>
-          <a class="menu" href="#" v-if="computer">视频解析</a>
+          <a class="menu" @click="analyse" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
-        <button class="hamburger" v-if="phone">
-            <span></span>
-        </button>
-      <div id="login">
-        <img src="../../assets/unLogin.jpg" v-if="computer">
-        <a>未登录</a>
+      <div id="loginDivC" v-if="computer">
+        <img src="../../assets/unLogin.jpg" />
+        <span @click="showLogin()">登录</span>
+        <span>注册</span>
+      </div>
+      <div id="loginDivP" v-if="phone">
+        <span @click="showLogin()">登录</span>
+        <span>注册</span>
       </div>
     </div>
 </template>
@@ -21,25 +23,28 @@
     export default {
         name: "Header",
         methods: {
-
+            showLogin(){
+                this.$parent.loginView = !this.$parent.loginView;
+            },
+            analyse(){
+              window.location.href='http://feichai.xyz/analyse.html';
+              window.open();
+            }
         },
         computed: {
             phone(){
-                if(document.documentElement.clientWidth<document.documentElement.clientHeight){
-                    return true;
-                }else{
-                    return false;
-                }
+              return document.documentElement.clientWidth<document.documentElement.clientHeight;
             },
-            computer(){
-              if(document.documentElement.clientWidth>=document.documentElement.clientHeight) {
-                return true;
-              }
-              else{
-                return false;
-              }
+            computer() {
+              return document.documentElement.clientWidth >= document.documentElement.clientHeight;
             }
-        }
+        },
+        data(){
+            return {
+
+            }
+        },
+        inject:['showView']
     }
 </script>
 
@@ -74,45 +79,6 @@
         font-family: hjlzt;
         font-size: 2vw;
     }
-    .hamburger {
-        background-color: rgba(0,0,0,0);
-        display: block;
-        position: absolute;
-        font-size: 0;
-        top: 4vh;
-        left: 64vw;
-        width: 48px;
-        height: 48px;
-        border: none;
-        cursor: pointer;
-    }
-    .hamburger:focus {
-        outline: none;
-    }
-    .hamburger span {
-        display: block;
-        position: absolute;
-        height: 4px;
-        top: 22px;
-        left: 8px;
-        right: 8px;
-        background-color: #fff;
-    }
-    .hamburger span:before,
-    .hamburger span:after {/*before和after与span重合，需要进行上移和下移*/
-        content: "";
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 4px;
-        background-color: #fff;
-    }
-    .hamburger span:before {
-        top: -10px;/*相对于中间的span上移10px*/
-    }
-    .hamburger span:after {
-        bottom: -10px;/*相对于中间的span下移10px*/
-    }
     .menu {
       position: relative;
       font-family: daimengti;
@@ -124,25 +90,45 @@
       text-decoration-line: none;
     }
     .menu:hover {
-      font-size: 1.4vw;
       color: coral;
     }
-    #login {
+    #loginDivC {
       position: absolute;
-      top: 0vh;
-      left: 80vw;
-      height: 14vh;
-      width: 20vw;
+      height: 100%;
+      top: 0;
+      left: calc(100% - 25vw);
     }
-    #login img {
+    #loginDivC img {
       position: relative;
       height: 80%;
       top: 10%;
-      left: -6vw;
-    }
-    #login a {
-      position: absolute;
-      top: 6vh;
       left: 0vw;
     }
+    #loginDivC span {
+      position: relative;
+      top: 0;
+      left: 0vw;
+      margin-left: 1rem;
+      height: 100%;
+      font-size: 1.4rem;
+      font-family: daimengti;
+    }
+    #loginDivC span:hover {
+        color: coral;
+    }
+    #loginDivC span {
+        cursor: cell;
+    }
+    #loginDivP {
+      position: absolute;
+      top: 40%;
+      height: auto;
+      left: 66%;
+      font-size: 5vw;
+      font-family: daimengti;
+    }
+    #loginDivP span{
+      margin-left: 2vw;
+    }
+
 </style>
