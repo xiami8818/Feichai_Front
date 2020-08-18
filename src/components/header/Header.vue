@@ -10,11 +10,11 @@
       <div id="loginDivC" v-if="computer">
         <img src="../../assets/unLogin.jpg" />
         <span @click="showLogin()" v-if="this.$parent.login==false">登录</span>
-        <span>注册</span>
+        <span @click="showRegister()" v-if="this.$parent.login==false">注册</span>
       </div>
       <div id="loginDivP" v-if="phone">
         <span @click="showLogin()">登录</span>
-        <span>注册</span>
+        <span @click="showRegister()">注册</span>
       </div>
     </div>
 </template>
@@ -22,6 +22,9 @@
     export default {
         name: "Header",
         methods: {
+            showRegister(){
+                this.$parent.registerView = !this.$parent.registerView;
+            },
             showLogin(){
                 this.$parent.loginView = !this.$parent.loginView;
             },

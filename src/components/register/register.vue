@@ -1,8 +1,8 @@
 <template>
     <div id="register">
-        <h3>欢迎注册废柴工作室</h3>
+        <h2 style="text-align: center">欢迎注册废柴工作室</h2>
         <div class="resInfo">
-            <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="请输入你的姓名" autocomplete="off" class="layui-input">
+            <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="请输入你的姓名" autocomplete="off" class="layui-input" >
         </div>
         <div class="resInfo">
             <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="请输入你的手机号" autocomplete="off" class="layui-input">
@@ -13,7 +13,7 @@
         <div class="resInfo">
             <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="再次确人你的密码" autocomplete="off" class="layui-input">
         </div>
-        <button @click="register()">注册</button>
+        <button @click="showRegister()">注册</button>
     </div>
 </template>
 <script>
@@ -38,7 +38,7 @@
                 const md5=crypto.createHash("md5");
                 let md5Password=md5.digest();
                 //let url = "http://localhost:80/login";
-                axios.post('http://47.100.137.63:8080/user/getInfo?phone=phone' + this.name + '&password='+this.md5Password
+                axios.post('http://47.100.137.63:8080/user/getInfo?phone=phone' + this.name + '&password='+md5Password
                 ).then(function (res) {
                     console.log(res);
                     if (res.data == 'succeed') {
@@ -48,15 +48,16 @@
                    this.register=false;
                    this.message="error";
                 })
-            }
+            },
+
         }
     }
 </script>
 <style scoped>
     #register {
         position: absolute;
-        top: 25vh;
-        width: 60vh;
+        top: 15vh;
+        width: 80vh;
         height: 80vh;
         left: calc(42.5vw - 20vh);
         background-color: #bff7ff;
@@ -65,7 +66,7 @@
         z-index: 2;
     }
     .resInfo {
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
     .resInfo input {
         position: relative;
@@ -73,11 +74,7 @@
         height: 2.5rem;
         border-radius: 0.2rem;
         border-style: none;
-    }
-    .resInfo label {
-        margin-top: 10rem;
-        margin-left: 2.5rem;
-        margin-right: 1rem;
+        margin-left: 4.5rem;
     }
     #register button{
         position: relative;

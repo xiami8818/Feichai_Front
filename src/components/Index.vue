@@ -35,6 +35,7 @@
         @click="showView()"
     ></vue-particles>
     <Login v-if="loginView"></Login>
+    <register v-if="registerView"></register>
     <Bottom></Bottom>
   </div>
 </template>
@@ -43,10 +44,12 @@
 import Header from "@/components/header/Header";
 import Bottom from "@/components/bottom/Bottom";
 import Login from "./login/Login";
+import Register from "./register/register";
 import axios from 'axios';
 export default {
   name: 'Index',
   components: {
+    Register,
     Header,
     Bottom,
     Login
@@ -87,6 +90,7 @@ export default {
   data(){
     return {
       loginView : false,
+      registerView:false,
       menu:false,
       login:false,
       message:''
