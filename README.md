@@ -5,6 +5,8 @@
 npm install vue-particles --save-dev
 
 npm install axios --save
+
+npm install crypto --save
 ```
 ## Project setup
 ```

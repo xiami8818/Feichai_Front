@@ -16,6 +16,7 @@
     </div>
 <script>
 import axios from 'axios';
+import crypto from 'crypto';
     export default {
         name: "Login",
       data(){
@@ -27,13 +28,14 @@ import axios from 'axios';
       },
       methods: {
           login() {
-            // eslint-disable-next-line no-unused-vars
             const that = this;
             //let url = "http://localhost:80/login";
-            axios({ method: 'POST',
-
-              url:'http://47.100.137.63:8080/login?phone='+this.phone+'&password='+this.password,
-            }).then(function (res){
+            const md5 = crypto.createHash('md5');
+            md5.update(this.password)
+            let md5Password =md5.digest();
+            console.log(md5Password);
+            axios.post('http://47.100.137.63:8080/login?phone='+this.phone+'&password='+md5Password,
+            ).then(function (res){
               console.log(res);
               if(res.data=='succeed'){
                 that.$parent.loginView = false;

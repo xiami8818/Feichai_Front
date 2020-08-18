@@ -9,7 +9,7 @@
           <a class="menu" href="#" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
         <img src="../../assets/unLogin.jpg" />
-        <span @click="showLogin()">登录</span>
+        <span @click="showLogin()" v-if="this.$parent.login==false">登录</span>
         <span>注册</span>
       </div>
       <div id="loginDivP" v-if="phone">
