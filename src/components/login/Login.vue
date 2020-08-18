@@ -8,12 +8,11 @@
             <label class="layui-form-label login-form"><i class="iconfont">&#xe82b;</i></label>
             <input type="password" v-model="password" name="username" lay-verify="required" placeholder="请输入您的密码" autocomplete="off" class="layui-input">
         </div>
-        <button @click="login">登录</button>
+        <button @click="login" >登录</button>
         <p>{{msg}}</p>
     </div>
 </template>
     <div>
-
     </div>
 <script>
 import axios from 'axios';
@@ -46,20 +45,19 @@ import crypto from 'crypto';
       }
     }
 </script>
-
 <style scoped>
 #login {
   position: absolute;
   top: 25vh;
-  width: 40vh;
+  width: 70vh;
   height: 50vh;
-    left: calc(50vw - 20vh);
-  background-color: cornsilk;
+    left: calc(42.5vw - 20vh);
+  background-color: #bff7ff;
   margin: 0 auto;
+    border-radius: 2rem;
   z-index: 2;
 }
 #login p {
-
 }
 @font-face {
     font-family: 'iconfont';
@@ -71,8 +69,10 @@ import crypto from 'crypto';
 }
 .iconfont{
     color: darkgrey;
+    margin-top: auto;
     font-family:"iconfont" !important;
-    font-size:26px;font-style:normal;
+    font-size:26px;
+    font-style:normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
@@ -82,18 +82,24 @@ import crypto from 'crypto';
 }
 .loginInfo input {
     position: relative;
-    width: 60%;
-    height: 1.4rem;
+    width: 68%;
+    height: 2.5rem;
+    border-radius: 0.2rem;
+    border-style: none;
 }
 .loginInfo label {
-    margin-left: 1rem;
+    margin-top: 10rem;
+    margin-left: 2.5rem;
     margin-right: 1rem;
 }
 #login button{
     position: relative;
     width: 80%;
     left: 10%;
-    margin-top: 3rem;
-    height: 4rem;
+    margin-top: 2rem;
+    height: 3rem;
+    border-radius: 4rem;
+    outline-style: none;
+    border-style: none;
 }
 </style>

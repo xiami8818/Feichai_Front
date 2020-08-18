@@ -18,7 +18,6 @@
       </div>
     </div>
 </template>
-
 <script>
     export default {
         name: "Header",
@@ -28,7 +27,6 @@
             },
             analyse(){
               window.location.href='http://feichai.xyz/analyse.html';
-              window.open();
             }
         },
         computed: {
@@ -47,7 +45,6 @@
         inject:['showView']
     }
 </script>
-
 <style scoped>
     #header {
         position: relative;
@@ -109,6 +106,7 @@
       top: 0;
       left: 0vw;
       margin-left: 1rem;
+        margin-bottom: 34rem;
       height: 100%;
       font-size: 1.4rem;
       font-family: daimengti;
@@ -128,7 +126,6 @@
       font-family: daimengti;
     }
     #loginDivP span{
-      margin-left: 2vw;
+        margin-left: 2vw;
     }
-
 </style>
