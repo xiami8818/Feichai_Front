@@ -4,7 +4,7 @@
     <p class="welcome" v-if="phone">废柴工作室</p>
     <Header id="header"></Header>
     <button class="hamburger" v-if="phone" @click="showMenu">
-      <span @click="showMenu"></span>
+      <span></span>
     </button>
     <div v-if="menu" id="menu">
       <a>OJ 平台</a>
@@ -14,7 +14,7 @@
       <a href="http://feichai.xyz/analyse.html">视频解析</a>
       <hr />
       <a>关于我们</a>
-      <img src="../assets/up.png" @click="closeMenu" />
+      <img @click="closeMenu" src="../assets/up.png"/>
     </div>
     <vue-particles v-if="computer"
         color="#dedede"
@@ -43,6 +43,7 @@
 import Header from "@/components/header/Header";
 import Bottom from "@/components/bottom/Bottom";
 import Login from "./login/Login";
+import axios from 'axios';
 export default {
   name: 'Index',
   components: {
@@ -63,16 +64,32 @@ export default {
       this.loginView = !this.loginView;
     },
     showMenu(){
-      this.menu = true;
+      this.menu = !this.menu;
     },
-    closeMenu(){
+    closeMenu() {
       this.menu = false;
+    },
+    check(){
+      axios.post("localhost:80/user/check").then(function (res){
+        if(res.data=="true"){
+          this.login = true;
+          axios.get("")
+        }
+      }).catch(function (){
+        this.login = false;
+        this.message = 'error';
+      })
     }
+  },
+  mounted() {
+    this.check();
   },
   data(){
     return {
       loginView : false,
-      menu:false
+      menu:false,
+      login:false,
+      message:''
     };
   }
 }
@@ -167,7 +184,9 @@ a {
   #menu img {
     position: absolute;
     top: 39vh;
+    background-image: url("../assets/up.png");
     left: calc(100% - 16vw);
     width: 10vw;
+    background-color: rgba(0,0,0,0);
   }
 </style>
