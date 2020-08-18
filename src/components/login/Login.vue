@@ -8,12 +8,11 @@
             <label class="layui-form-label login-form"><i class="iconfont">&#xe82b;</i></label>
             <input type="password" v-model="password" name="username" lay-verify="required" placeholder="请输入您的密码" autocomplete="off" class="layui-input">
         </div>
-        <button @click="login">登录</button>
+        <button @click="login" >登录</button>
         <p>{{msg}}</p>
     </div>
 </template>
     <div>
-
     </div>
 <script>
 import axios from 'axios';
@@ -31,8 +30,8 @@ import axios from 'axios';
             // eslint-disable-next-line no-unused-vars
             const that = this;
             //let url = "http://localhost:80/login";
-            axios({
-              method: 'POST',
+            axios({ method: 'POST',
+
               url:'http://47.100.137.63:8080/login?phone='+this.phone+'&password='+this.password,
             }).then(function (res){
               console.log(res);
@@ -44,20 +43,19 @@ import axios from 'axios';
       }
     }
 </script>
-
 <style scoped>
 #login {
   position: absolute;
   top: 25vh;
-  width: 40vh;
+  width: 70vh;
   height: 50vh;
-    left: calc(50vw - 20vh);
-  background-color: cornsilk;
+    left: calc(42.5vw - 20vh);
+  background-color: #bff7ff;
   margin: 0 auto;
+    border-radius: 2rem;
   z-index: 2;
 }
 #login p {
-
 }
 @font-face {
     font-family: 'iconfont';
@@ -69,8 +67,10 @@ import axios from 'axios';
 }
 .iconfont{
     color: darkgrey;
+    margin-top: auto;
     font-family:"iconfont" !important;
-    font-size:26px;font-style:normal;
+    font-size:26px;
+    font-style:normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
@@ -80,18 +80,24 @@ import axios from 'axios';
 }
 .loginInfo input {
     position: relative;
-    width: 60%;
-    height: 1.4rem;
+    width: 68%;
+    height: 2.5rem;
+    border-radius: 0.2rem;
+    border-style: none;
 }
 .loginInfo label {
-    margin-left: 1rem;
+    margin-top: 10rem;
+    margin-left: 2.5rem;
     margin-right: 1rem;
 }
 #login button{
     position: relative;
     width: 80%;
     left: 10%;
-    margin-top: 3rem;
-    height: 4rem;
+    margin-top: 2rem;
+    height: 3rem;
+    border-radius: 4rem;
+    outline-style: none;
+    border-style: none;
 }
 </style>
