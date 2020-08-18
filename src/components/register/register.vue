@@ -2,18 +2,19 @@
     <div id="register">
         <h2 style="text-align: center">欢迎注册废柴工作室</h2>
         <div class="resInfo">
-            <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="请输入你的姓名" autocomplete="off" class="layui-input" >
+            <input type="text" v-model="name" name="username" lay-verify="required" placeholder="请输入您的姓名" autocomplete="off" class="layui-input" >
         </div>
         <div class="resInfo">
-            <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="请输入你的手机号" autocomplete="off" class="layui-input">
+            <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="请输入您的手机号" autocomplete="off" class="layui-input">
         </div>
         <div class="resInfo">
-            <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="请设置你的密码" autocomplete="off" class="layui-input">
+            <input type="text" v-model="password" name="username" lay-verify="required" placeholder="请设置您的密码" autocomplete="off" class="layui-input">
         </div>
         <div class="resInfo">
-            <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="再次确人你的密码" autocomplete="off" class="layui-input">
+            <input type="text" v-model="confirmPwd" name="username" lay-verify="required" placeholder="请确认您的密码" autocomplete="off" class="layui-input">
+          <img src="../../assets/right.jpg" v-if="confirm&confirmPwd!=''" />
         </div>
-        <button @click="showRegister()">注册</button>
+        <button>注册</button>
     </div>
 </template>
 <script>
@@ -29,6 +30,7 @@
                 num :'',
                 qq:'',
                 message:'',
+                confirmPwd:''
         }
         },
         methods: {
@@ -38,28 +40,37 @@
                 const md5=crypto.createHash("md5");
                 let md5Password=md5.digest();
                 //let url = "http://localhost:80/login";
-                axios.post('http://47.100.137.63:8080/user/getInfo?phone=phone' + this.name + '&password='+md5Password
+                axios.post('http://localhost:80/user/login?phone=phone' + this.name + '&password='+md5Password
                 ).then(function (res) {
                     console.log(res);
                     if (res.data == 'succeed') {
                         that.$parent.loginView = false;
+                        axios.get("http://localhost:80")
                     }
                 }).catch(function () {
                    this.register=false;
                    this.message="error";
                 })
-            },
-
+            }
+        },
+        computed: {
+          confirm: function(){
+            if(this.password==this.confirmPwd){
+              return true;
+            }else{
+              return false;
+            }
+          }
         }
     }
 </script>
 <style scoped>
     #register {
         position: absolute;
-        top: 15vh;
-        width: 80vh;
-        height: 80vh;
-        left: calc(42.5vw - 20vh);
+        top: 18vh;
+        width: 50vw;
+        height: 68vh;
+        left: 25vw;
         background-color: #bff7ff;
         margin: 0 auto;
         border-radius: 2rem;
@@ -85,5 +96,9 @@
         border-radius: 4rem;
         outline-style: none;
         border-style: none;
+    }
+    .resInfo img {
+      position: relative;
+      top: 4vh;
     }
 </style>

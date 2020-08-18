@@ -5,7 +5,7 @@
           <a class="menu" href="#" v-if="computer">首页</a>
           <a class="menu" href="#" v-if="computer">OJ平台</a>
           <a class="menu" href="#" v-if="computer">社团信息</a>
-          <a class="menu" @click="analyse" v-if="computer">视频解析</a>
+          <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
         <img src="../../assets/unLogin.jpg" />
@@ -24,9 +24,11 @@
         methods: {
             showRegister(){
                 this.$parent.registerView = !this.$parent.registerView;
+                this.$parent.loginView = false;
             },
             showLogin(){
                 this.$parent.loginView = !this.$parent.loginView;
+                this.$parent.registerView = false;
             },
             analyse(){
               window.location.href='http://feichai.xyz/analyse.html';
@@ -109,7 +111,7 @@
       top: 0;
       left: 0vw;
       margin-left: 1rem;
-        margin-bottom: 34rem;
+      margin-bottom: 34rem;
       height: 100%;
       font-size: 1.4rem;
       font-family: daimengti;
