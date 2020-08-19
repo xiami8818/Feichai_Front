@@ -5,7 +5,7 @@
             <input type="text" v-model="phone" id="phone" name="username" lay-verify="required" placeholder="请输入您的手机号" autocomplete="off" class="layui-input">
             <input type="password" v-model="password" id="password" name="username" lay-verify="required" placeholder="请设置您的密码" autocomplete="off" class="layui-input">
             <input type="password" v-model="confirmPwd" id="confirmPwd" name="username" lay-verify="required" placeholder="请确认您的密码" autocomplete="off" class="layui-input">
-            <img src="../../../public/right.png" v-if="confirm&confirmPwd!=''" />
+            <img src="/right.png" v-if="confirm&confirmPwd!=''" />
             <p id="message">{{message}}</p>
         <p @click="register" id="commit">注册</p>
     </div>
