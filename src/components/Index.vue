@@ -71,10 +71,10 @@ export default {
     },
     check(){
       const that = this;
-      axios.get("http://localhost:8080/user/check").then(function (res){
+      axios.get("http://47.100.137.63:8080/user/check").then(function (res){
         if(res.data=="true"){
           that.$parent.login = true;
-          axios.get("http://localhost:8080/user/getInfo?phone="+that.phoneNum).then(function (res) {
+          axios.get("http://47.100.137.63:8080/user/getInfo?phone="+that.phoneNum).then(function (res) {
             let temp = res.data.split('&');
             that.name = temp[0];
             that.img = temp[1];

@@ -46,7 +46,7 @@
                 const md5=crypto.createHash("md5");
                 md5.update(this.password);
                 let md5Password=md5.digest('hex');
-                axios.post('http://localhost:8080/user/regist?phone='+this.phone + '&name='+this.name + '&password='+md5Password
+                axios.post('http://47.100.137.63:8080/user/regist?phone='+this.phone + '&name='+this.name + '&password='+md5Password
                 ).then(function (res) {
                     console.log(res);
                     if (res.data == 'succeed') {
@@ -112,7 +112,7 @@
       position: absolute;
       width: 40px;
       left: 82%;
-      top: 60%;
+      top: 54%;
     }
     #name {
       position: absolute;

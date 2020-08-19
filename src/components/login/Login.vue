@@ -29,7 +29,7 @@ import crypto from 'crypto';
             md5.update(this.password)
             let md5Password =md5.digest('hex');
             console.log(md5Password);
-            axios.post('http://localhost:8080/user/login?phone='+this.phone+'&password='+md5Password,
+            axios.post('http://47.100.137.63:8080/user/login?phone='+this.phone+'&password='+md5Password,
             ).then(function (res){
               console.log(res);
               if(res.data=='succeed'){
