@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import Header from "@/components/header/Header";
-import Bottom from "@/components/bottom/Bottom";
+import Header from "./header/Header";
+import Bottom from "./bottom/Bottom";
 import Login from "./login/Login";
 import Register from "./register/register";
 import axios from 'axios';
@@ -63,9 +63,6 @@ export default {
     }
   },
   methods: {
-    showView(){
-      this.loginView = !this.loginView;
-    },
     showMenu(){
       this.menu = !this.menu;
     },
@@ -73,10 +70,17 @@ export default {
       this.menu = false;
     },
     check(){
-      axios.post("localhost:80/user/check").then(function (res){
+      const that = this;
+      axios.get("http://localhost:8080/user/check").then(function (res){
         if(res.data=="true"){
-          this.login = true;
-          axios.get("")
+          that.$parent.login = true;
+          axios.get("http://localhost:8080/user/getInfo?phone="+that.phoneNum).then(function (res) {
+            let temp = res.data.split('&');
+            that.name = temp[0];
+            that.img = temp[1];
+          })
+        }else{
+          that.$parent.login = false;
         }
       }).catch(function (){
         this.login = false;
@@ -93,7 +97,10 @@ export default {
       registerView:false,
       menu:false,
       login:false,
-      message:''
+      message:'',
+      phoneNum: '',
+      name:'',
+      img:'/unLogin.jpg'
     };
   }
 }

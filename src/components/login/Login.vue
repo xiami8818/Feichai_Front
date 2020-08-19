@@ -27,18 +27,22 @@ import crypto from 'crypto';
             const that = this;
             const md5 = crypto.createHash('md5');
             md5.update(this.password)
-            let md5Password =md5.digest();
+            let md5Password =md5.digest('hex');
             console.log(md5Password);
-            axios.post('http://localhost/user/login?phone='+this.phone+'&password='+md5Password,
+            axios.post('http://localhost:8080/user/login?phone='+this.phone+'&password='+md5Password,
             ).then(function (res){
               console.log(res);
               if(res.data=='succeed'){
                 that.$parent.loginView = false;
+                that.$parent.$parent.login = true;
+                that.$parent.phoneNum = that.phone;
               }else{
                 that.msg = '用户名或密码错误';
+                  that.$parent.$parent.login = false;
               }
             }).catch(function (){
               that.msg = '服务器发生未知错误,请稍后重试';
+              that.$parent.$parent.login = false;
             })
           }
       }

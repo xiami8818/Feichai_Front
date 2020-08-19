@@ -11,6 +11,11 @@
     components: {
       Index
     },
+    data(){
+      return{
+        login:false
+      }
+    },
     mounted() {
       setTimeout(() => {
         window.L2Dwidget.init({

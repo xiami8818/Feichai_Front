@@ -1,11 +1,12 @@
 <template>
     <div id="register">
         <h2 style="text-align: center">欢迎注册废柴工作室</h2>
-            <input type="text" v-model="name" id="name" name="username" lay-verify="required" placeholder="请输入您的姓名" autocomplete="off" class="layui-input" >
+            <input type="text" v-model="name" id="name" name="username" lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input" >
             <input type="text" v-model="phone" id="phone" name="username" lay-verify="required" placeholder="请输入您的手机号" autocomplete="off" class="layui-input">
-            <input type="text" v-model="password" id="password" name="username" lay-verify="required" placeholder="请设置您的密码" autocomplete="off" class="layui-input">
-            <input type="text" v-model="confirmPwd" id="confirmPwd" name="username" lay-verify="required" placeholder="请确认您的密码" autocomplete="off" class="layui-input">
-          <img src="../../assets/right.png" v-if="confirm&confirmPwd!=''" />
+            <input type="password" v-model="password" id="password" name="username" lay-verify="required" placeholder="请设置您的密码" autocomplete="off" class="layui-input">
+            <input type="password" v-model="confirmPwd" id="confirmPwd" name="username" lay-verify="required" placeholder="请确认您的密码" autocomplete="off" class="layui-input">
+            <img src="../../../public/right.png" v-if="confirm&confirmPwd!=''" />
+            <p id="message">{{message}}</p>
         <p @click="register" id="commit">注册</p>
     </div>
 </template>
@@ -27,20 +28,39 @@
         },
         methods: {
             register() {
+                if(!this.confirm){
+                    this.message = '两次密码输入不一致';
+                    return false;
+                }else if(this.name==''){
+                    this.message = '请输入昵称';
+                    return false;
+                }else if(this.phone==''){
+                    this.message = '请输入手机号';
+                    return false;
+                }else if(this.password==''){
+                    this.message = '请设置密码';
+                    return false;
+                }
                 // eslint-disable-next-line no-unused-vars
                 const that = this;
                 const md5=crypto.createHash("md5");
-                let md5Password=md5.digest();
-                //let url = "http://localhost:80/login";
-                axios.post('http://localhost:80/user/login?phone=phone' + this.name + '&password='+md5Password
+                md5.update(this.password);
+                let md5Password=md5.digest('hex');
+                axios.post('http://localhost:8080/user/regist?phone='+this.phone + '&name='+this.name + '&password='+md5Password
                 ).then(function (res) {
                     console.log(res);
                     if (res.data == 'succeed') {
-                        that.$parent.loginView = false;
-                        axios.get("http://localhost:80")
+                        that.$parent.registerView = false;
+                        that.$parent.$parent.login = true;
+                        that.$parent.phoneNum = that.phone;
+                        //axios.get("http://localhost:80")
+                    }else if(res.data == 'existed'){
+                        that.message = '该手机号已注册';
+                        console.log(res.data);
+                        return ;
                     }
                 }).catch(function () {
-                   this.register=false;
+                    console.log("error");
                    this.message="error";
                 })
             }
@@ -72,7 +92,7 @@
       position: absolute;
       width: 80%;
       left: 10%;
-      top: 70%;
+      top: 72%;
       height: 3rem;
       border-radius: 4rem;
       text-align: center;
@@ -106,20 +126,28 @@
       width: 60%;
       height: 7%;
       left: 20%;
-      top: 30%;
+      top: 28%;
     }
     #password {
       position: absolute;
       width: 60%;
       height: 7%;
       left: 20%;
-      top: 45%;
+      top: 41%;
     }
     #confirmPwd {
       position: absolute;
       width: 60%;
       height: 7%;
       left: 20%;
-      top: 60%;
+      top: 54%;
+    }
+    #message {
+        position: absolute;
+        top: 62%;
+        color: red;
+        font-size: 1.4rem;
+        text-align: center;
+        width: 100%;
     }
 </style>

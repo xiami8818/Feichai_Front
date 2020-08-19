@@ -8,9 +8,9 @@
           <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
-        <img src="../../assets/unLogin.jpg" />
-        <span @click="showLogin()" v-if="this.$parent.login==false">登录</span>
-        <span @click="showRegister()" v-if="this.$parent.login==false">注册</span>
+        <img v-bind:src=this.$parent.img />
+        <span @click="showLogin()" v-if="this.$parent.$parent.login===false">登录</span>
+        <span @click="showRegister()" v-if="this.$parent.$parent.login===false">注册</span>
       </div>
       <div id="loginDivP" v-if="phone">
         <span @click="showLogin()">登录</span>
@@ -47,7 +47,9 @@
 
             }
         },
-        inject:['showView']
+        mounted() {
+            console.log(this.$parent.img)
+        }
     }
 </script>
 <style scoped>
