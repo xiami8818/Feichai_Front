@@ -5,7 +5,6 @@
     <Bottom></Bottom>
   </div>
 </template>
-
 <script>
   import Header from "@/components/header/Header";
   import Bottom from "@/components/bottom/Bottom";

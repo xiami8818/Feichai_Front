@@ -58,7 +58,7 @@ import crypto from 'crypto';
   background-color: #bff7ff;
   margin: 0 auto;
   border-radius: 2rem;
-  z-index: 2;
+  z-index: 4;
 }
 @font-face {
     font-family: 'iconfont';

@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index" ref="index">
     <p class="welcome" v-if="computer">WELCOME</p>
     <p class="welcome" v-if="phone">废柴工作室</p>
     <button class="hamburger" v-if="phone" @click="showMenu">
@@ -32,21 +32,13 @@
         :clickEffect="true"
         clickMode="repulse"
     ></vue-particles>
-    <Login v-if="loginView"></Login>
-    <register v-if="registerView"></register>
   </div>
 </template>
 
 <script>
-import Login from "./login/Login";
-import Register from "./register/register";
 import axios from 'axios';
 export default {
   name: 'Index',
-  components: {
-    Register,
-    Login
-  },
   computed: {
     phone(){
       return document.documentElement.clientWidth<document.documentElement.clientHeight;
@@ -92,8 +84,7 @@ export default {
       login:false,
       message:'',
       phoneNum: '',
-      name:'',
-      img:'/unLogin.jpg'
+      name:''
     };
   }
 }
@@ -118,7 +109,7 @@ a {
   font-size: 6vw;
   left: 34vw;
   top: calc(50vh - 10vw);
-  z-index: 2;
+  z-index: 1;
 }
 #particles-js {
   position: absolute;

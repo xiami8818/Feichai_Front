@@ -8,48 +8,56 @@
           <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
-        <img v-bind:src=this.$parent.img />
-        <span @click="showLogin()" v-if="this.$parent.login===false">登录</span>
-        <span @click="showRegister()" v-if="this.$parent.login===false">注册</span>
+        <img :src=this.img />
+        <span @click="showLogin()" v-if="login===false">登录</span>
+        <span @click="showRegister()" v-if="login===false">注册</span>
       </div>
       <div id="loginDivP" v-if="phone">
         <span @click="showLogin()">登录</span>
         <span @click="showRegister()">注册</span>
       </div>
+      <Login v-if="loginView"></Login>
+      <Register v-if="registerView"></Register>
     </div>
 </template>
 <script>
+import Login from "@/components/login/Login";
+import Register from "@/components/register/Register"
     export default {
-        name: "Header",
-        methods: {
-            showRegister(){
-                this.$parent.registerView = !this.$parent.registerView;
-                this.$parent.loginView = false;
-            },
-            showLogin(){
-                this.$parent.loginView = !this.$parent.loginView;
-                this.$parent.registerView = false;
-            },
-            analyse(){
-              window.location.href='http://feichai.xyz/analyse.html';
-            }
+      name: "Header",
+      components:{
+        Login,
+        Register
+      },
+      methods: {
+        showRegister() {
+          this.registerView = !this.registerView;
+          this.loginView = false;
         },
-        computed: {
-            phone(){
-              return document.documentElement.clientWidth<document.documentElement.clientHeight;
-            },
-            computer() {
-              return document.documentElement.clientWidth >= document.documentElement.clientHeight;
-            }
+        showLogin() {
+          this.loginView = !this.loginView;
+          this.registerView = false;
         },
-        data(){
-            return {
-
-            }
-        },
-        mounted() {
-            console.log(this.$parent.img)
+        analyse() {
+          window.location.href = 'http://feichai.xyz/analyse.html';
         }
+      },
+      computed: {
+        phone() {
+          return document.documentElement.clientWidth < document.documentElement.clientHeight;
+        },
+        computer() {
+          return document.documentElement.clientWidth >= document.documentElement.clientHeight;
+        }
+      },
+      data() {
+        return {
+          loginView: false,
+          registerView: false,
+          login: false,
+          img:'/unLogin.jpg'
+        }
+      }
     }
 </script>
 <style scoped>
