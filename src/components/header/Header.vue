@@ -2,15 +2,15 @@
     <div id="header">
         <img src="../../assets/logo.png" id="ico" />
         <span id="title" v-if="computer">废柴工作室</span>
-          <a class="menu" href="#" v-if="computer">首页</a>
+          <router-link class="menu" to="/" v-if="computer">首页</router-link>
           <a class="menu" href="#" v-if="computer">OJ平台</a>
           <a class="menu" href="#" v-if="computer">社团信息</a>
           <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
         <img v-bind:src=this.$parent.img />
-        <span @click="showLogin()" v-if="this.$parent.$parent.login===false">登录</span>
-        <span @click="showRegister()" v-if="this.$parent.$parent.login===false">注册</span>
+        <span @click="showLogin()" v-if="this.$parent.login===false">登录</span>
+        <span @click="showRegister()" v-if="this.$parent.login===false">注册</span>
       </div>
       <div id="loginDivP" v-if="phone">
         <span @click="showLogin()">登录</span>
@@ -60,6 +60,7 @@
         top: 0px;
         left: 0px;
         background-color: darkgray;
+      z-index: 2;
     }
     #ico {
         position: relative;

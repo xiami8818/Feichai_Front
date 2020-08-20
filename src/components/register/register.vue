@@ -23,7 +23,8 @@
                 num :'',
                 qq:'',
                 message:'',
-                confirmPwd:''
+                confirmPwd:'',
+                img:''
         }
         },
         methods: {

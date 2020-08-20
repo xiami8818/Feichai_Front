@@ -2,11 +2,10 @@
   <div class="index">
     <p class="welcome" v-if="computer">WELCOME</p>
     <p class="welcome" v-if="phone">废柴工作室</p>
-    <Header id="header"></Header>
     <button class="hamburger" v-if="phone" @click="showMenu">
       <span></span>
     </button>
-    <div v-if="menu" id="menu">
+    <div v-if="phone" id="menu">
       <a>OJ 平台</a>
       <hr />
       <a>社团信息</a>
@@ -32,17 +31,13 @@
         hoverMode="grab"
         :clickEffect="true"
         clickMode="repulse"
-        @click="showView()"
     ></vue-particles>
     <Login v-if="loginView"></Login>
     <register v-if="registerView"></register>
-    <Bottom></Bottom>
   </div>
 </template>
 
 <script>
-import Header from "./header/Header";
-import Bottom from "./bottom/Bottom";
 import Login from "./login/Login";
 import Register from "./register/register";
 import axios from 'axios';
@@ -50,8 +45,6 @@ export default {
   name: 'Index',
   components: {
     Register,
-    Header,
-    Bottom,
     Login
   },
   computed: {
@@ -134,9 +127,6 @@ a {
   height: 100vh;
   z-index: 1;
 }
-  #header {
-    z-index: 2;
-  }
 .hamburger {
   background-color: rgba(0,0,0,0);
   display: block;

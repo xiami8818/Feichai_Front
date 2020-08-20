@@ -1,19 +1,24 @@
 <template>
   <div id="app">
-    <Index></Index>
+    <Header></Header>
+    <router-view></router-view>
+    <Bottom></Bottom>
   </div>
 </template>
 
 <script>
-  import Index from "@/components/Index";
+  import Header from "@/components/header/Header";
+  import Bottom from "@/components/bottom/Bottom";
   export default {
   name: 'App',
     components: {
-      Index
+      Bottom,
+      Header
     },
     data(){
       return{
-        login:false
+        login:false,
+        img:'/unLogin.jpg'
       }
     },
     mounted() {
