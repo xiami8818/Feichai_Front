@@ -1,15 +1,11 @@
 <template>
     <div id="login">
-        <div class="loginInfo">
-            <label class="layui-form-label login-form"><i class="iconfont">&#xe6b8;</i></label>
-            <input type="text" v-model="phone" name="username" lay-verify="required" placeholder="请输入您的手机号" autocomplete="off" class="layui-input">
-        </div>
-        <div class="loginInfo">
-            <label class="layui-form-label login-form"><i class="iconfont">&#xe82b;</i></label>
-            <input type="password" v-model="password" name="username" lay-verify="required" placeholder="请输入您的密码" autocomplete="off" class="layui-input">
-        </div>
-        <button @click="login" >登录</button>
-        <p>{{msg}}</p>
+        <label class="layui-form-label login-form" id="nameIcon"><i class="iconfont">&#xe6b8;</i></label>
+        <input type="text" v-model="phone" name="username" id="nameText" lay-verify="required" placeholder="请输入您的手机号" autocomplete="off" class="layui-input">
+        <label class="layui-form-label login-form" id="passwordIcon"><i class="iconfont">&#xe82b;</i></label>
+        <input type="password" id="passwordText" v-model="password" name="username" lay-verify="required" placeholder="请输入您的密码" autocomplete="off" class="layui-input">
+    <p @click="login" id="commit" >登录</p>
+    <p id="tip">{{msg}}</p>
     </div>
 </template>
     <div>
@@ -29,17 +25,24 @@ import crypto from 'crypto';
       methods: {
           login() {
             const that = this;
-            //let url = "http://localhost:80/login";
             const md5 = crypto.createHash('md5');
             md5.update(this.password)
-            let md5Password =md5.digest();
+            let md5Password =md5.digest('hex');
             console.log(md5Password);
-            axios.post('http://47.100.137.63:8080/login?phone='+this.phone+'&password='+md5Password,
+            axios.post('http://47.100.137.63:8080/user/login?phone='+this.phone+'&password='+md5Password,
             ).then(function (res){
               console.log(res);
               if(res.data=='succeed'){
                 that.$parent.loginView = false;
+                that.$parent.$parent.login = true;
+                that.$parent.phoneNum = that.phone;
+              }else{
+                that.msg = '用户名或密码错误';
+                  that.$parent.$parent.login = false;
               }
+            }).catch(function (){
+              that.msg = '服务器发生未知错误,请稍后重试';
+              that.$parent.$parent.login = false;
             })
           }
       }
@@ -49,15 +52,13 @@ import crypto from 'crypto';
 #login {
   position: absolute;
   top: 25vh;
-  width: 70vh;
+  width: 30vw;
   height: 50vh;
-    left: calc(42.5vw - 20vh);
+  left: 35vw;
   background-color: #bff7ff;
   margin: 0 auto;
-    border-radius: 2rem;
-  z-index: 2;
-}
-#login p {
+  border-radius: 2rem;
+  z-index: 4;
 }
 @font-face {
     font-family: 'iconfont';
@@ -77,29 +78,61 @@ import crypto from 'crypto';
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
 }
-.loginInfo {
-    margin-top: 3rem;
+#nameIcon {
+  position: absolute;
+  top: 12%;
+  left:  10%;
 }
-.loginInfo input {
-    position: relative;
-    width: 68%;
-    height: 2.5rem;
-    border-radius: 0.2rem;
-    border-style: none;
+#nameText {
+  position: absolute;
+  height: 12%;
+  width: 60%;
+  left: 24%;
+  top: 11%;
+}
+#passwordIcon {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+}
+#passwordText {
+  position: absolute;
+  top: 38%;
+  height: 12%;
+  width: 60%;
+  left: 24%;
 }
 .loginInfo label {
     margin-top: 10rem;
     margin-left: 2.5rem;
     margin-right: 1rem;
 }
-#login button{
-    position: relative;
+#commit{
+    position: absolute;
     width: 80%;
     left: 10%;
-    margin-top: 2rem;
+    top: 60%;
     height: 3rem;
     border-radius: 4rem;
-    outline-style: none;
-    border-style: none;
+    text-align: center;
+  background-color: antiquewhite;
+  box-shadow: 0 25px #ffda00,
+                              0  35px rgba(0,0,0,0.3);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: 0.2s linear;
+}
+#commit:active {
+  transform: translateY(20px);
+  box-shadow: 0 5px 0 #ffda00,
+                              0 15px 5px rgba(0,0,0,0.3);
+}
+#tip {
+  color: red;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  font-size: 1.4rem;
+  text-align: center;
 }
 </style>

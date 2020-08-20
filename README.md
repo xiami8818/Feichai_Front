@@ -7,6 +7,8 @@ npm install vue-particles --save-dev
 npm install axios --save
 
 npm install crypto --save
+
+npm install vue-router --save-dev
 ```
 ## Project setup
 ```

@@ -1,12 +1,11 @@
 <template>
-  <div class="index">
+  <div class="index" ref="index">
     <p class="welcome" v-if="computer">WELCOME</p>
     <p class="welcome" v-if="phone">废柴工作室</p>
-    <Header id="header"></Header>
     <button class="hamburger" v-if="phone" @click="showMenu">
       <span></span>
     </button>
-    <div v-if="menu" id="menu">
+    <div v-if="phone" id="menu">
       <a>OJ 平台</a>
       <hr />
       <a>社团信息</a>
@@ -32,28 +31,14 @@
         hoverMode="grab"
         :clickEffect="true"
         clickMode="repulse"
-        @click="showView()"
     ></vue-particles>
-    <Login v-if="loginView"></Login>
-    <register v-if="registerView"></register>
-    <Bottom></Bottom>
   </div>
 </template>
 
 <script>
-import Header from "@/components/header/Header";
-import Bottom from "@/components/bottom/Bottom";
-import Login from "./login/Login";
-import Register from "./register/register";
 import axios from 'axios';
 export default {
   name: 'Index',
-  components: {
-    Register,
-    Header,
-    Bottom,
-    Login
-  },
   computed: {
     phone(){
       return document.documentElement.clientWidth<document.documentElement.clientHeight;
@@ -63,9 +48,6 @@ export default {
     }
   },
   methods: {
-    showView(){
-      this.loginView = !this.loginView;
-    },
     showMenu(){
       this.menu = !this.menu;
     },
@@ -73,10 +55,17 @@ export default {
       this.menu = false;
     },
     check(){
-      axios.post("localhost:80/user/check").then(function (res){
+      const that = this;
+      axios.get("http://47.100.137.63:8080/user/check").then(function (res){
         if(res.data=="true"){
-          this.login = true;
-          axios.get("")
+          that.$parent.login = true;
+          axios.get("http://47.100.137.63:8080/user/getInfo?phone="+that.phoneNum).then(function (res) {
+            let temp = res.data.split('&');
+            that.name = temp[0];
+            that.img = temp[1];
+          })
+        }else{
+          that.$parent.login = false;
         }
       }).catch(function (){
         this.login = false;
@@ -93,7 +82,9 @@ export default {
       registerView:false,
       menu:false,
       login:false,
-      message:''
+      message:'',
+      phoneNum: '',
+      name:''
     };
   }
 }
@@ -118,7 +109,7 @@ a {
   font-size: 6vw;
   left: 34vw;
   top: calc(50vh - 10vw);
-  z-index: 2;
+  z-index: 1;
 }
 #particles-js {
   position: absolute;
@@ -127,9 +118,6 @@ a {
   height: 100vh;
   z-index: 1;
 }
-  #header {
-    z-index: 2;
-  }
 .hamburger {
   background-color: rgba(0,0,0,0);
   display: block;

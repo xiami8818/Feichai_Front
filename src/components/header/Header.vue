@@ -2,50 +2,62 @@
     <div id="header">
         <img src="../../assets/logo.png" id="ico" />
         <span id="title" v-if="computer">废柴工作室</span>
-          <a class="menu" href="#" v-if="computer">首页</a>
+          <router-link class="menu" to="/" v-if="computer">首页</router-link>
           <a class="menu" href="#" v-if="computer">OJ平台</a>
           <a class="menu" href="#" v-if="computer">社团信息</a>
-          <a class="menu" @click="analyse" v-if="computer">视频解析</a>
+          <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
-        <img src="../../assets/unLogin.jpg" />
-        <span @click="showLogin()" v-if="this.$parent.login==false">登录</span>
-        <span @click="showRegister()" v-if="this.$parent.login==false">注册</span>
+        <img :src=this.img />
+        <span @click="showLogin()" v-if="login===false">登录</span>
+        <span @click="showRegister()" v-if="login===false">注册</span>
       </div>
       <div id="loginDivP" v-if="phone">
         <span @click="showLogin()">登录</span>
         <span @click="showRegister()">注册</span>
       </div>
+      <Login v-if="loginView"></Login>
+      <Register v-if="registerView"></Register>
     </div>
 </template>
 <script>
+import Login from "@/components/login/Login";
+import Register from "@/components/register/Register"
     export default {
-        name: "Header",
-        methods: {
-            showRegister(){
-                this.$parent.registerView = !this.$parent.registerView;
-            },
-            showLogin(){
-                this.$parent.loginView = !this.$parent.loginView;
-            },
-            analyse(){
-              window.location.href='http://feichai.xyz/analyse.html';
-            }
+      name: "Header",
+      components:{
+        Login,
+        Register
+      },
+      methods: {
+        showRegister() {
+          this.registerView = !this.registerView;
+          this.loginView = false;
         },
-        computed: {
-            phone(){
-              return document.documentElement.clientWidth<document.documentElement.clientHeight;
-            },
-            computer() {
-              return document.documentElement.clientWidth >= document.documentElement.clientHeight;
-            }
+        showLogin() {
+          this.loginView = !this.loginView;
+          this.registerView = false;
         },
-        data(){
-            return {
-
-            }
+        analyse() {
+          window.location.href = 'http://feichai.xyz/analyse.html';
+        }
+      },
+      computed: {
+        phone() {
+          return document.documentElement.clientWidth < document.documentElement.clientHeight;
         },
-        inject:['showView']
+        computer() {
+          return document.documentElement.clientWidth >= document.documentElement.clientHeight;
+        }
+      },
+      data() {
+        return {
+          loginView: false,
+          registerView: false,
+          login: false,
+          img:'/unLogin.jpg'
+        }
+      }
     }
 </script>
 <style scoped>
@@ -56,6 +68,7 @@
         top: 0px;
         left: 0px;
         background-color: darkgray;
+      z-index: 2;
     }
     #ico {
         position: relative;
@@ -109,7 +122,7 @@
       top: 0;
       left: 0vw;
       margin-left: 1rem;
-        margin-bottom: 34rem;
+      margin-bottom: 34rem;
       height: 100%;
       font-size: 1.4rem;
       font-family: daimengti;
