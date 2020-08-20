@@ -1,18 +1,13 @@
 <template>
   <div id="code">
-    <Header></Header>
-    <input v-model="data"/>
-    <div v-html="data"></div>
-    <Bottom></Bottom>
+    <textarea v-model="data" id="input"></textarea>
+    <div v-html="data" id="view"></div>
   </div>
 </template>
 
 <script>
-import Header from "@/components/header/Header";
-import Bottom from "@/components/bottom/Bottom";
 export default {
 name: "Code",
-  components: {Bottom, Header},
   data(){
     return {
       data:''
@@ -22,5 +17,18 @@ name: "Code",
 </script>
 
 <style scoped>
-
+#input {
+  position: absolute;
+  top: 15vh;
+  left: 5px;
+  height: 70vh;
+  width: 50vw;
+}
+#view {
+  position: absolute;
+  top: 15vh;
+  left: 50vw;
+  height: 70vh;
+  width: 50vw;
+}
 </style>
