@@ -98,8 +98,8 @@
       border-radius: 4rem;
       text-align: center;
       background-color: antiquewhite;
-      box-shadow: 0 25px #ffda00,
-      0  35px rgba(0,0,0,0.3);
+      box-shadow: 0 10px #ffda00,
+      0  10px rgba(0,0,0,0.3);
       font-size: 1.4rem;
       cursor: pointer;
       transition: 0.2s linear;
@@ -117,29 +117,37 @@
     }
     #name {
       position: absolute;
+        border-radius: 0.2rem;
+        border-style: none;
       width: 60%;
-      height: 7%;
+      height: 8%;
       left: 20%;
       top:  15%;
     }
     #phone {
       position: absolute;
+        border-radius: 0.2rem;
+        border-style: none;
       width: 60%;
-      height: 7%;
+      height: 8%;
       left: 20%;
       top: 28%;
     }
     #password {
       position: absolute;
+        border-radius: 0.2rem;
+        border-style: none;
       width: 60%;
-      height: 7%;
+      height: 8%;
       left: 20%;
       top: 41%;
     }
     #confirmPwd {
       position: absolute;
+        border-radius: 0.2rem;
+        border-style: none;
       width: 60%;
-      height: 7%;
+      height: 8%;
       left: 20%;
       top: 54%;
     }
@@ -147,7 +155,7 @@
         position: absolute;
         top: 62%;
         color: red;
-        font-size: 1.4rem;
+        font-size: 1rem;
         text-align: center;
         width: 100%;
     }

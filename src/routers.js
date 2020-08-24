@@ -9,6 +9,6 @@ const routers = [
         name: 'code',
         path:' /code',
         component:Code
-    }
+    },
 ]
 export default routers

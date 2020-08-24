@@ -3,7 +3,6 @@
     <span id="icp"> 冀ICP备19028957号-1 </span>
   </div>
 </template>
-
 <script>
 export default {
 name: "Bottom"
@@ -12,11 +11,11 @@ name: "Bottom"
 <style scoped>
   #bottom {
     position: absolute;
-    width: 100%;
     top: calc(100% - 4rem);
     height: 10vh;
     background-color: gray;
-    left: 0px;
+    margin: 0.2rem;
+    width: 81rem;
   }
   #icp {
     position: absolute;

@@ -4,7 +4,7 @@
         <span id="title" v-if="computer">废柴工作室</span>
           <router-link class="menu" to="/" v-if="computer">首页</router-link>
           <a class="menu" href="#" v-if="computer">OJ平台</a>
-          <a class="menu" href="#" v-if="computer">社团信息</a>
+          <router-link class="menu" to="/JE" v-if="computer">社团信息</router-link>
           <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
@@ -16,8 +16,8 @@
         <span @click="showLogin()">登录</span>
         <span @click="showRegister()">注册</span>
       </div>
-      <Login v-if="loginView"></Login>
-      <Register v-if="registerView"></Register>
+        <Login v-if="loginView"></Login>
+        <Register v-if="registerView"></Register>
     </div>
 </template>
 <script>
@@ -27,7 +27,7 @@ import Register from "@/components/register/Register"
       name: "Header",
       components:{
         Login,
-        Register
+        Register,
       },
       methods: {
         showRegister() {
@@ -38,7 +38,7 @@ import Register from "@/components/register/Register"
           this.loginView = !this.loginView;
           this.registerView = false;
         },
-        analyse() {
+          analyse() {
           window.location.href = 'http://feichai.xyz/analyse.html';
         }
       },
@@ -68,7 +68,7 @@ import Register from "@/components/register/Register"
         top: 0px;
         left: 0px;
         background-color: darkgray;
-      z-index: 2;
+        z-index: 2;
     }
     #ico {
         position: relative;
