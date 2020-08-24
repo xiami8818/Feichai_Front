@@ -1,20 +1,20 @@
 <template>
     <div id="login">
         <label class="layui-form-label login-form" id="nameIcon"><i class="iconfont">&#xe6b8;</i></label>
-        <input type="text" v-model="phone" name="username" id="nameText" lay-verify="required" placeholder="请输入您的手机号" autocomplete="off" class="layui-input">
+        <input type="text" v-model="phone" name="username" id="nameText" lay-verify="required" placeholder="请输入您的手机号" autocomplete="off" class="layui-input"><span></span>
         <label class="layui-form-label login-form" id="passwordIcon"><i class="iconfont">&#xe82b;</i></label>
         <input type="password" id="passwordText" v-model="password" name="username" lay-verify="required" placeholder="请输入您的密码" autocomplete="off" class="layui-input">
-    <p @click="login" id="commit" >登录</p>
+    <p @click="login" id="commit">登录</p>
     <p id="tip">{{msg}}</p>
     </div>
-</template>
+    </template>
     <div>
     </div>
-<script>
+    <script>
 import axios from 'axios';
 import crypto from 'crypto';
-    export default {
-        name: "Login",
+export default {
+    name: "Login",
       data(){
           return {
             phone:'',
@@ -85,6 +85,8 @@ import crypto from 'crypto';
 }
 #nameText {
   position: absolute;
+    border-radius: 0.2rem;
+    border-style: none;
   height: 12%;
   width: 60%;
   left: 24%;
@@ -97,6 +99,8 @@ import crypto from 'crypto';
 }
 #passwordText {
   position: absolute;
+    border-radius: 0.2rem;
+    border-style: none;
   top: 38%;
   height: 12%;
   width: 60%;
@@ -115,24 +119,22 @@ import crypto from 'crypto';
     height: 3rem;
     border-radius: 4rem;
     text-align: center;
-  background-color: antiquewhite;
-  box-shadow: 0 25px #ffda00,
-                              0  35px rgba(0,0,0,0.3);
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: 0.2s linear;
+    background-color: antiquewhite;
+    box-shadow: 0 10px #ffda00, 0  10px rgba(0,0,0,0.3);
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 0.2s linear;
 }
 #commit:active {
   transform: translateY(20px);
-  box-shadow: 0 5px 0 #ffda00,
-                              0 15px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 0 #ffda00, 0 15px 5px rgba(0,0,0,0.3);
 }
 #tip {
   color: red;
   position: absolute;
   width: 100%;
   top: 50%;
-  font-size: 1.4rem;
+  font-size: 1rem;
   text-align: center;
 }
 </style>

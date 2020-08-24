@@ -10,7 +10,7 @@
   import Bottom from "@/components/bottom/Bottom";
   export default {
   name: 'App',
-    components: {
+    components:{
       Bottom,
       Header
     },
@@ -36,7 +36,6 @@
       }, 1000)
     }
   }
-
 
 </script>
 
