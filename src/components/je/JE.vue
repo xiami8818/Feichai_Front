@@ -1,17 +1,17 @@
 <template>
-    <div id="JE">
+    <div id="je">
        <div id="nav">
-          <div id="k">
-              <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem">算法</p>
+          <div id="algorithm-index">
+              <p>算法</p>
           </div>
-           <div id="k1">
-               <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem">机器人</p>
+           <div id="robot-index">
+               <p>机器人</p>
            </div>
-           <div id="k2">
-               <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem">网络安全</p>
+           <div id="safe-index">
+               <p>网络安全</p>
            </div>
-           <div id="k3">
-               <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem;">社团账目</p>
+           <div id="account-index">
+               <p>社团账目</p>
            </div>
        </div>
       <div class="Algorithm">
@@ -35,40 +35,72 @@
                 以后维护自己的电脑也有很大的帮助。
             </p>
         </div>
+      <Bottom id="bottom"></Bottom>
     </div>
 </template>
 <script>
+import Bottom from "@/components/bottom/Bottom";
     export default {
-        name: "JE",
+      name: "JE",
+      components: {
+        Bottom
+      }
     }
 </script>
 <style scoped>
-#JE{
-    width: 100%;
-    height: 100%;
+#je{
+  position: absolute;
+  top: 14vh;
+  width: 100%;
+  height: 100%;
 }
 #nav{
-    width: 20%;
-    height: 100%;
-    float: left;
-    background: purple;
+  position: absolute;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  float: left;
+  background: blanchedalmond;
 }
-#k{
-    height: 16.8vh;
-    background-color: cornflowerblue;
+#algorithm-index{
+  background-color: ghostwhite;
+  height: 14vh;
+  text-align: center;
+  line-height: 14vh;
+  font-size: 2rem;
 }
-#k1{
-    height: 16.8vh;
-    background-color: darkgrey;
+#algorithm-index:hover {
+  background-color: coral;
 }
-#k2{
-    height: 16.8vh;
-    background-color: cornsilk;
+#robot-index {
+    height: 14vh;
+    background-color: ghostwhite;
+  line-height: 14vh;
+  font-size: 2rem;
+  text-align: center;
 }
-#k3{
-    height: 16.8vh;
-    background-color: #ffda00;
-    margin-bottom: 0.6rem;
+#robot-index:hover {
+  background-color: coral;
+}
+#safe-index {
+    height: 14vh;
+    background-color: ghostwhite;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 14vh;
+}
+#safe-index:hover {
+  background-color: coral;
+}
+#account-index {
+    height: 14vh;
+    background-color: ghostwhite;
+    line-height: 14vh;
+  font-size: 2rem;
+  text-align: center;
+}
+#account-index:hover{
+  background-color: coral;
 }
 #suanfa{
    height: 30vh;
@@ -200,5 +232,10 @@
     height: 100%;
     float: left;
     background-color: #bff7ff;
+}
+#bottom {
+  position: absolute;
+  top: 74vh;
+  left: 0vw;
 }
 </style>

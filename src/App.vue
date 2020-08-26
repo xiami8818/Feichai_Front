@@ -1,17 +1,14 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header id="header"></Header>
     <router-view></router-view>
-    <Bottom></Bottom>
   </div>
 </template>
 <script>
   import Header from "@/components/header/Header";
-  import Bottom from "@/components/bottom/Bottom";
   export default {
   name: 'App',
     components:{
-      Bottom,
       Header
     },
     data(){
@@ -42,5 +39,10 @@
 <style>
 #app {
   background: transparent !important;
+}
+#header {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
