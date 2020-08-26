@@ -1,5 +1,19 @@
 <template>
     <div id="JE">
+       <div id="nav">
+          <div id="k">
+              <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem">算法</p>
+          </div>
+           <div id="k1">
+               <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem">机器人</p>
+           </div>
+           <div id="k2">
+               <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem">网络安全</p>
+           </div>
+           <div id="k3">
+               <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem;">社团账目</p>
+           </div>
+       </div>
       <div class="Algorithm">
           <img src="../../../public/1.png" id="suanfa">
           <h3 id="title">算法(Algorithm)</h3>
@@ -32,6 +46,29 @@
 #JE{
     width: 100%;
     height: 100%;
+}
+#nav{
+    width: 20%;
+    height: 100%;
+    float: left;
+    background: purple;
+}
+#k{
+    height: 16.8vh;
+    background-color: cornflowerblue;
+}
+#k1{
+    height: 16.8vh;
+    background-color: darkgrey;
+}
+#k2{
+    height: 16.8vh;
+    background-color: cornsilk;
+}
+#k3{
+    height: 16.8vh;
+    background-color: #ffda00;
+    margin-bottom: 0.6rem;
 }
 #suanfa{
    height: 30vh;
@@ -147,19 +184,19 @@
     border-radius:10px;
 }
 .Algorithm{
-   width: 33.3%;
+   width: 26.6%;
     height: 100%;
     float: left;
     background-color: #bff7ff;
 }
 .robot{
-    width: 33.3%;
+    width: 26.6%;
     height: 100%;
     float: left;
     background-color: #bff7ff; 
 }
 .is{
-    width: 33.3%;
+    width: 26.6%;
     height: 100%;
     float: left;
     background-color: #bff7ff;

@@ -2,13 +2,8 @@
     <div>
         <el-row class="head-info">
             <el-col>
-            <img v-bind:src="headInfo.src" @click.stop="uploadHeadImg
-        style="width=50px;height:50px;overflow:hidden;border-radius:50%;">
-            <input type="file"
-                   accept="image/*"
-                   @change="handleHeadChange"
-                   class="headInputFile"
-                   style="display:none">
+            <img v-bind:src="headInfo.src" @click.stop="uploadHeadImg" style="width:50px;height:50px;overflow:hidden;border-radius:50%;">
+            <input type="file" accept="image/*" @change="handleHeadChange" class="headInputFile" style="display:none">
             </el-col>
         </el-row>
     </div>
