@@ -15,7 +15,7 @@ name: "Bottom"
     height: 10vh;
     background-color: gray;
     margin: 0.2rem;
-    width: 81rem;
+    width: 100vw;
   }
   #icp {
     position: absolute;
