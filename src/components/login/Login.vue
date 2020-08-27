@@ -13,7 +13,6 @@
     <script>
 import axios from 'axios';
 import crypto from 'crypto';
-import global from "@/components/global";
 export default {
     name: "Login",
       data(){
