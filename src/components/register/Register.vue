@@ -32,11 +32,11 @@
                 if(!this.confirm){
                     this.message = '两次密码输入不一致';
                     return false;
-                }else if(this.name==''){
-                    this.message = '请输入昵称';
+                }else if(this.name.match(".*[& #].*$")){
+                    this.message = '请输入合法昵称（不能包含&#[空格]等符号）';
                     return false;
-                }else if(this.phone==''){
-                    this.message = '请输入手机号';
+                }else if(!this.phone.match("[1-9][0-9]{10}$")){
+                    this.message = '请输入正确的手机号';
                     return false;
                 }else if(this.password==''){
                     this.message = '请设置密码';
@@ -47,7 +47,7 @@
                 const md5=crypto.createHash("md5");
                 md5.update(this.password);
                 let md5Password=md5.digest('hex');
-                axios.post('http://47.100.137.63:8080/user/regist?phone='+this.phone + '&name='+this.name + '&password='+md5Password
+                axios.post('http://localhost:80/user/regist?phone='+this.phone + '&name='+this.name + '&password='+md5Password
                 ).then(function (res) {
                     console.log(res);
                     if (res.data == 'succeed') {
@@ -98,8 +98,8 @@
       border-radius: 4rem;
       text-align: center;
       background-color: antiquewhite;
-      box-shadow: 0 10px #ffda00,
-      0  10px rgba(0,0,0,0.3);
+      box-shadow: 0 20px #ffda00,
+      0  20px rgba(0,0,0,0.3);
       font-size: 1.4rem;
       cursor: pointer;
       transition: 0.2s linear;

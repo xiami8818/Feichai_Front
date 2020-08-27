@@ -8,7 +8,7 @@
           <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
-        <img :src=this.img />
+        <img :src=this.header id="head-img" />
         <span @click="showLogin()" v-if="login===false">登录</span>
         <span @click="showRegister()" v-if="login===false">注册</span>
       </div>
@@ -22,12 +22,12 @@
 </template>
 <script>
 import Login from "@/components/login/Login";
-import Register from "@/components/register/Register"
+import Register from "@/components/register/Register";
     export default {
       name: "Header",
       components:{
         Login,
-        Register,
+        Register
       },
       methods: {
         showRegister() {
@@ -55,7 +55,8 @@ import Register from "@/components/register/Register"
           loginView: false,
           registerView: false,
           login: false,
-          img:'/unLogin.jpg'
+          header: '/unLogin.jpg',
+          name: ''
         }
       }
     }
@@ -91,6 +92,9 @@ import Register from "@/components/register/Register"
         left: 10vw;
         font-family: hjlzt;
         font-size: 2vw;
+    }
+    #head-img {
+      border-radius: 100%;
     }
     .menu {
       position: relative;

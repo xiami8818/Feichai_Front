@@ -13,6 +13,7 @@
     <script>
 import axios from 'axios';
 import crypto from 'crypto';
+import global from "@/components/global";
 export default {
     name: "Login",
       data(){
@@ -29,13 +30,18 @@ export default {
             md5.update(this.password)
             let md5Password =md5.digest('hex');
             console.log(md5Password);
-            axios.post('http://47.100.137.63:8080/user/login?phone='+this.phone+'&password='+md5Password,
+            axios.post('http://localhost:80/user/login?phone='+this.phone+'&password='+md5Password,
             ).then(function (res){
-              console.log(res);
               if(res.data=='succeed'){
                 that.$parent.loginView = false;
                 that.$parent.$parent.login = true;
                 that.$parent.phoneNum = that.phone;
+                axios.get("http://localhost:80/user/getInfo?phone="+that.phone).then(function (res){
+                    let temp = res.data.split("&");
+                    that.$parent.name = temp[0];
+                    console.log(temp);
+                    that.$parent.header = temp[1];
+                })
               }else{
                 that.msg = '用户名或密码错误';
                   that.$parent.$parent.login = false;
@@ -120,7 +126,7 @@ export default {
     border-radius: 4rem;
     text-align: center;
     background-color: antiquewhite;
-    box-shadow: 0 10px #ffda00, 0  10px rgba(0,0,0,0.3);
+    box-shadow: 0 20px #ffda00, 0  20px rgba(0,0,0,0.3);
     font-size: 1.4rem;
     cursor: pointer;
     transition: 0.2s linear;
