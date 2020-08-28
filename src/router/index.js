@@ -3,6 +3,7 @@ import Router from 'vue-router';
 const Index = ()=>import('@/components/Index');
 const Code = ()=>import('@/components/code/Code');
 const JE = ()=>import('@/components/je/JE');
+const PI= ()=>import('@/components/perInfo/PerInfo')
 Vue.use(Router);
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
     {
         path: '/je',
         component: JE
+    },
+    {
+        path: '/perInfo',
+        component: PI
     },
 
 ]
