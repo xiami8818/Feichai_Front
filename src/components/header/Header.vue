@@ -12,6 +12,7 @@
         <span @click="showLogin()" v-if="login===false">登录</span>
         <span @click="showRegister()" v-if="login===false">注册</span>
         <span id="name" v-if="login">{{name}}</span>
+        <span id="exit" v-if="login" @click="logout">注销</span>
       </div>
       <div id="loginDivP" v-if="phone">
         <span @click="showLogin()">登录</span>
@@ -57,6 +58,11 @@ import axios from "axios";
               })
             }
           })
+        },
+        logout(){
+          axios.post("http://localhost:80/user/logout");
+          this.login = false;
+          this.header = '/unLogin.jpg';
         }
       },
       computed: {
@@ -170,5 +176,8 @@ import axios from "axios";
     }
     #name {
       color: lavenderblush;
+    }
+    #exit {
+      color: azure;
     }
 </style>

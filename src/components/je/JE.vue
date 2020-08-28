@@ -34,7 +34,7 @@
           <button>报名机器人组</button>
         </div>
         <div class="safe" v-if="select2=='selected'">
-          <img src="../../../public/3.png" id="is">
+          <img src="../../../public/safe1.png" id="is">
           <h3 id="title2">网络安全(Internet security)</h3>
           <p id="word1">网络安全于我们的生活息息相关，学习网络安全有利于保护我们的隐私不被窃取、保护我们的利益不被侵害。对于一些网络上的不法行为，我们
             可以也做出正确的回击。网络安全也需要我们大家的努力去维护，在这里你会了解不一样的网络安全，你也会懂得黑客们是如何盗走你的数据和信息的，这对于你
@@ -103,7 +103,6 @@ import Bottom from "@/components/bottom/Bottom";
   left: 0;
   width: 20%;
   height: 80vh;
-  float: left;
   background: blanchedalmond;
 }
 .selected {
@@ -113,25 +112,25 @@ import Bottom from "@/components/bottom/Bottom";
   background-color: ghostwhite;
 }
 #algorithm-index{
-  height: 14vh;
+  height: 16%;
   text-align: center;
   line-height: 14vh;
   font-size: 2rem;
 }
 #robot-index {
-    height: 14vh;
+    height: 16%;
   line-height: 14vh;
   font-size: 2rem;
   text-align: center;
 }
 #safe-index {
-    height: 14vh;
+    height: 16%;
   text-align: center;
   font-size: 2rem;
   line-height: 14vh;
 }
 #account-index {
-    height: 14vh;
+    height: 16%;
     line-height: 14vh;
   font-size: 2rem;
   text-align: center;
