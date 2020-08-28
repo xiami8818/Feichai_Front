@@ -32,8 +32,8 @@
                 if(!this.confirm){
                     this.message = '两次密码输入不一致';
                     return false;
-                }else if(this.name.match(".*[& #].*$")){
-                    this.message = '请输入合法昵称（不能包含&#[空格]等符号）';
+                }else if(this.name.match(".*[&$ #].*$")){
+                    this.message = '请输入合法昵称（不能包含&#[空格]$等符号）';
                     return false;
                 }else if(!this.phone.match("[1-9][0-9]{10}$")){
                     this.message = '请输入正确的手机号';
@@ -50,19 +50,18 @@
                 axios.post('http://localhost:80/user/regist?phone='+this.phone + '&name='+this.name + '&password='+md5Password
                 ).then(function (res) {
                     console.log(res);
-                    if (res.data == 'succeed') {
+                    if (res.data == '$succeed') {
                         that.$parent.registerView = false;
                         that.$parent.$parent.login = true;
                         that.$parent.phoneNum = that.phone;
                         //axios.get("http://localhost:80")
-                    }else if(res.data == 'existed'){
+                    }else if(res.data == '$existed'){
                         that.message = '该手机号已注册';
                         console.log(res.data);
                         return ;
                     }
                 }).catch(function () {
-                    console.log("error");
-                   this.message="error";
+                   this.message="发生未知错误";
                 })
             }
         },

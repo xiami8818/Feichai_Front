@@ -28,18 +28,17 @@ export default {
             const md5 = crypto.createHash('md5');
             md5.update(this.password)
             let md5Password =md5.digest('hex');
-            console.log(md5Password);
             axios.post('http://localhost:80/user/login?phone='+this.phone+'&password='+md5Password,
             ).then(function (res){
-              if(res.data=='succeed'){
+              if(res.data=='$succeed'){
                 that.$parent.loginView = false;
                 that.$parent.$parent.login = true;
                 that.$parent.phoneNum = that.phone;
                 axios.get("http://localhost:80/user/getInfo?phone="+that.phone).then(function (res){
                     let temp = res.data.split("&");
                     that.$parent.name = temp[0];
-                    console.log(temp);
                     that.$parent.header = temp[1];
+                    that.$parent.login = true;
                 })
               }else{
                 that.msg = '用户名或密码错误';

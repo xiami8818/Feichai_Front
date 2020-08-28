@@ -3,7 +3,7 @@
         <img src="../../assets/logo.png" id="ico" />
         <span id="title" v-if="computer">废柴工作室</span>
           <router-link class="menu" to="/" v-if="computer">首页</router-link>
-          <a class="menu" href="#" v-if="computer">OJ平台</a>
+          <a class="menu" href="http://feichai.xyz/oj" v-if="computer">OJ平台</a>
           <router-link class="menu" to="/JE" v-if="computer">社团信息</router-link>
           <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
@@ -11,6 +11,7 @@
         <img :src=this.header id="head-img" />
         <span @click="showLogin()" v-if="login===false">登录</span>
         <span @click="showRegister()" v-if="login===false">注册</span>
+        <span id="name" v-if="login">{{name}}</span>
       </div>
       <div id="loginDivP" v-if="phone">
         <span @click="showLogin()">登录</span>
@@ -23,6 +24,7 @@
 <script>
 import Login from "@/components/login/Login";
 import Register from "@/components/register/Register";
+import axios from "axios";
     export default {
       name: "Header",
       components:{
@@ -40,6 +42,21 @@ import Register from "@/components/register/Register";
         },
           analyse() {
           window.location.href = 'http://feichai.xyz/analyse.html';
+        },
+        check(){
+          const that = this;
+          axios.get("http://localhost:80/user/check").then(function (res){
+            if(res.data=='$false'){
+              return ;
+            }else{
+              axios.get("http://localhost:80/user/getInfo?phone="+res.data).then(function (response){
+                let temp = response.data.split("&");
+                that.name = temp[0];
+                that.header = temp[1];
+                that.login = true;
+              })
+            }
+          })
         }
       },
       computed: {
@@ -58,13 +75,16 @@ import Register from "@/components/register/Register";
           header: '/unLogin.jpg',
           name: ''
         }
+      },
+      mounted() {
+        this.check();
       }
     }
 </script>
 <style scoped>
     #header {
         position: relative;
-        width: 100%;
+        width: 100vw;
         height: 14vh;
         top: 0px;
         left: 0px;
@@ -147,5 +167,8 @@ import Register from "@/components/register/Register";
     }
     #loginDivP span{
         margin-left: 2vw;
+    }
+    #name {
+      color: lavenderblush;
     }
 </style>
