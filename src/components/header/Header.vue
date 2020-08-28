@@ -4,14 +4,14 @@
         <span id="title" v-if="computer">废柴工作室</span>
           <router-link class="menu" to="/" v-if="computer">首页</router-link>
           <a class="menu" href="http://feichai.xyz/oj" v-if="computer">OJ平台</a>
-          <router-link class="menu" to="/JE" v-if="computer">社团信息</router-link>
+          <router-link class="menu" to="/je" v-if="computer">社团信息</router-link>
           <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
           <a class="menu" href="#" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
         <img :src=this.header id="head-img" />
         <span @click="showLogin()" v-if="login===false">登录</span>
         <span @click="showRegister()" v-if="login===false">注册</span>
-        <span id="name" v-if="login">{{name}}</span>
+        <router-link to="perInfo" id="nameLink"><span id="name" v-if="login">{{name}}</span></router-link>
         <span id="exit" v-if="login" @click="logout">注销</span>
       </div>
       <div id="loginDivP" v-if="phone">
@@ -63,6 +63,9 @@ import axios from "axios";
           axios.post("http://localhost:8080/user/logout");
           this.login = false;
           this.header = '/unLogin.jpg';
+          if(this.$route.path=="/perInfo"){
+            this.$router.push('/index');
+          }
         }
       },
       computed: {
@@ -176,6 +179,9 @@ import axios from "axios";
     }
     #name {
       color: lavenderblush;
+    }
+    #nameLink {
+      text-decoration-line: none;
     }
     #exit {
       color: azure;
