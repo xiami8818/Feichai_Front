@@ -1,204 +1,268 @@
 <template>
-    <div id="JE">
+    <div id="je">
        <div id="nav">
-          <div id="k">
-              <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem">算法</p>
+          <div id="algorithm-index" :class="selected0">
+              <p @mouseenter="select0">算法</p>
           </div>
-           <div id="k1">
-               <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem">机器人</p>
+           <div id="robot-index" :class="selected1">
+               <p @mouseenter="select1">机器人</p>
            </div>
-           <div id="k2">
-               <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem">网络安全</p>
+           <div id="safe-index" :class="selected2">
+               <p @mouseenter="select2">网络安全</p>
            </div>
-           <div id="k3">
-               <p style="text-align: center;font-size: 1.5rem;margin-top: 0.5rem;padding-top: 2rem;">社团账目</p>
+           <div id="account-index" :class="selected3">
+               <p @mouseenter="select3">社团账目</p>
            </div>
        </div>
-      <div class="Algorithm">
-          <img src="../../../public/1.png" id="suanfa">
-          <h3 id="title">算法(Algorithm)</h3>
-          <p id="word">当你看到这张图片的时候，你也许真的认为算法会让人的头发掉光,但是事实并不是这样的。因为你没有见过马云和马化腾秃头，
-              甚至作为科技巨头的华为公司的董事长任正非也依旧是发量饱满。而且需要我们知道的是，4G到5G的更新更是用算法实现的。欢迎小萌新们加入我们这支强大的科技队伍哦，让我们一起为科技贡献点力量吧！！！</p>
-      </div>
-      <div class="robot">
-          <img src="../../../public/4.jpg" id="jiqi">
-          <img src="../../../public/5.jpg" id="jiqiren">
-          <h3 id="title1">机器人比赛(Robot)</h3>
-          <img src="../../../public/2.jpg" id="bisai">
-          <img src="../../../public/3.jpg" id="cg">
-      </div>
-        <div class="is">
-           <img src="../../../public/3.png" id="is">
-           <h3 id="title2">网络安全(Internet security)</h3>
-            <p id="word1">网络安全于我们的生活息息相关，学习网络安全有利于保护我们的隐私不被窃取、保护我们的利益不被侵害。对于一些网络上的不法行为，我们
-                可以也做出正确的回击。网络安全也需要我们大家的努力去维护，在这里你会了解不一样的网络安全，你也会懂得黑客们是如何盗走你的数据和信息的，这对于你
-                以后维护自己的电脑也有很大的帮助。
-            </p>
+      <div id="content">
+        <div class="algorithm" v-if="selected0=='selected'">
+          <img src="/algorithm1.png">
+          <h2>算法组(Algorithm)</h2>
+          <p>当你看到这张图片的时候，你也许真的认为算法会让人的头发掉光,但是事实并不是这样的。因为你没有见过马云和马化腾秃头，
+            甚至作为科技巨头的华为公司的董事长任正非也依旧是发量饱满。而且需要我们知道的是，4G到5G的更新更是用算法实现的。欢迎小萌新们加入我们这支强大的科技队伍哦，让我们一起为科技贡献点力量吧！！！</p>
+          <button>报名算法组</button>
         </div>
+        <div class="robot" v-if="selected1=='selected'">
+          <img src="/robot1.jpg" id="robot-img1">
+          <img src="/robot2.jpg" id="robot-img2">
+          <img src="/robot3.jpg" id="robot-img3">
+          <img src="/robot4.jpg" id="robot-img4">
+          <h2 id="title1">机器人组(Robot)</h2>
+          <p>机器人组，致力于开发各种机器人开发。教授内容有电路基础知识、各模块使用、线路焊接以及单片机软件系统开发，
+          常用单片机型号有：AT89C51、STM32、ARDRUINO等，每年都会有河北农业大学本部机器人大赛、河北省机器人大赛等多种比赛
+          我社团在比赛中也会多次拿到奖项，去年我社团两组拿到特等奖，充分说明了JE发明创造协会机器人组的实力。欢迎喜欢电子科技的你加入我们！</p>
+          <button>报名机器人组</button>
+        </div>
+        <div class="safe" v-if="select2=='selected'">
+          <img src="../../../public/safe1.png" id="is">
+          <h3 id="title2">网络安全(Internet security)</h3>
+          <p id="word1">网络安全于我们的生活息息相关，学习网络安全有利于保护我们的隐私不被窃取、保护我们的利益不被侵害。对于一些网络上的不法行为，我们
+            可以也做出正确的回击。网络安全也需要我们大家的努力去维护，在这里你会了解不一样的网络安全，你也会懂得黑客们是如何盗走你的数据和信息的，这对于你
+            以后维护自己的电脑也有很大的帮助。
+          </p>
+        </div>
+        <div class="account" v-if="selected3=='selected'">
+
+        </div>
+      </div>
+      <Bottom id="bottom"></Bottom>
     </div>
 </template>
 <script>
+import Bottom from "@/components/bottom/Bottom";
     export default {
-        name: "JE",
+      name: "JE",
+      components: {
+        Bottom
+      },
+      methods: {
+        select0(){
+          this.selected0 = 'selected';
+          this.selected1 = 'unselected';
+          this.selected2 = 'unselected';
+          this.selected3 = 'unselected';
+        },
+        select1(){
+          this.selected1 = 'selected';
+          this.selected0 = 'unselected';
+          this.selected2 = 'unselected';
+          this.selected3 = 'unselected';
+        },
+        select2(){
+          this.selected2 = 'selected';
+          this.selected1 = 'unselected';
+          this.selected0 = 'unselected';
+          this.selected3 = 'unselected';
+        },
+        select3(){
+          this.selected3 = 'selected';
+          this.selected1 = 'unselected';
+          this.selected2 = 'unselected';
+          this.selected0 = 'unselected';
+        },
+      },
+      data(){
+        return {
+          selected0:'selected',
+          selected1: 'unselected',
+          selected2: 'unselected',
+          selected3: 'unselected'
+        }
+      }
     }
 </script>
 <style scoped>
-#JE{
-    width: 100%;
-    height: 100%;
+#je{
+  position: absolute;
+  top: 14vh;
+  width: 100%;
+  height: 80vh;
 }
 #nav{
-    width: 20%;
-    height: 100%;
-    float: left;
-    background: purple;
+  position: absolute;
+  left: 0;
+  width: 20%;
+  height: 80vh;
+  background: blanchedalmond;
 }
-#k{
-    height: 16.8vh;
-    background-color: cornflowerblue;
+.selected {
+  background-color: coral;
 }
-#k1{
-    height: 16.8vh;
-    background-color: darkgrey;
+.unselected {
+  background-color: ghostwhite;
 }
-#k2{
-    height: 16.8vh;
-    background-color: cornsilk;
+#algorithm-index{
+  height: 16%;
+  text-align: center;
+  line-height: 14vh;
+  font-size: 2rem;
 }
-#k3{
-    height: 16.8vh;
-    background-color: #ffda00;
-    margin-bottom: 0.6rem;
-}
-#suanfa{
-   height: 30vh;
-    width: 80%;
-   margin-left: 10%;
-    margin-top: 0.5rem;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: 2s;
-}
-#suanfa:hover{
-    transform: rotateY(360deg);
-    background:linear-gradient(146deg,rgba(187,152,255,1),rgba(131,104,220,1));
-    border-radius:10px;
-}
-#word{
-    width: 90%;
-    margin-left: 5%;
-    font-family: 宋体;
-    text-indent: 2rem;
-    line-height: 1.5rem;
-    margin-bottom: 2rem;
-}
-#word1{
-    width: 90%;
-    text-indent: 2rem;
-    margin-left: 5%;
-    font-family: 宋体;
-    line-height: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-#title{
+#robot-index {
+    height: 16%;
+  line-height: 14vh;
+  font-size: 2rem;
   text-align: center;
 }
-#title1{
-    text-align: center;
-    float: left;
-   width: 100%;
+#safe-index {
+    height: 16%;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 14vh;
 }
-#title2{
-    text-align: center;
+#account-index {
+    height: 16%;
+    line-height: 14vh;
+  font-size: 2rem;
+  text-align: center;
 }
-#jiqi{
-    height: 30vh;
-    width: 50%;
-    float: left;
-    margin-top: 0.5rem;
-    margin-right:3%;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: 2s;
+#content {
+  position: absolute;
+  left: 20vw;
+  height: 80vh;
+  width: 80%;
+  background-color: ghostwhite;
 }
-#jiqi:hover{
-    transform: rotateY(360deg);
-    background:linear-gradient(146deg,rgba(187,152,255,1),rgba(131,104,220,1));
-    border-radius:10px;
+.algorithm button {
+  position: absolute;
+  width: 40%;
+  height: 40px;
+  top: 80%;
+  left: 20%;
+  border-radius: 20px;
 }
-#jiqiren{
-    height: 30vh;
-    width: 47%;
-    float: left;
-    margin-top: 0.5rem;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: 2s;
+.algorithm{
+   width: 80vw;
+    height: 100%;
 }
-#jiqiren:hover{
-    transform: rotateY(360deg);
-    background:linear-gradient(146deg,rgba(187,152,255,1),rgba(131,104,220,1));
-    border-radius:10px;
+.algorithm img {
+  position: absolute;
+  width: 20%;
+  top: 15%;
+  left: 6%;
 }
-#bisai{
-    height: 30vh;
-    width: 50%;
-    float: left;
-    margin-bottom: 0.5rem;
-    margin-right:3%;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: 2s;
+.algorithm h2 {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  text-align: center;
 }
-#bisai:hover{
-    transform: rotateY(360deg);
-    background:linear-gradient(146deg,rgba(187,152,255,1),rgba(131,104,220,1));
-    border-radius:10px;
+.algorithm p {
+  position: absolute;
+  width: 60%;
+  top: 14%;
+  left: 30%;
+  font-size: 18px;
 }
-#cg{
-    height: 30vh;
-    width: 47%;
-    float: left;
-    margin-bottom: 1rem;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: 2s;
+.robot {
+  position: absolute;
+  width: 80vw;
+  height: 100%;
 }
-#cg:hover{
-    transform: rotateY(360deg);
-    background:linear-gradient(146deg,rgba(187,152,255,1),rgba(131,104,220,1));
-    border-radius:10px;
+#robot-img1 {
+  position: absolute;
+  top: 20%;
+  left: 4%;
+  width: 20%;
+  height: 20%;
+  transition: 1s;
 }
-#is{
-    height: 30vh;
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 0.5rem;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: 2s;
+#robot-img1:hover {
+  width: 40%;
+  height: 40%;
+  z-index: 2;
 }
-#is:hover{
-    transform: rotateY(360deg);
-    background:linear-gradient(146deg,rgba(187,152,255,1),rgba(131,104,220,1));
-    border-radius:10px;
+#robot-img2 {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  top: 20%;
+  left: 24%;
+  transition: 1s;
 }
-.Algorithm{
-   width: 26.6%;
+#robot-img2:hover {
+  height: 40%;
+  width: 40%;
+  left: 4%;
+  z-index: 2;
+}
+#robot-img3 {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  top: 40%;
+  left: 4%;
+  transition: 1s;
+}
+#robot-img3:hover {
+  width: 40%;
+  height: 40%;
+  top: 20%;
+  z-index: 2;
+}
+#robot-img4 {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  left: 24%;
+  top: 40%;
+  transition: 1s;
+}
+#robot-img4:hover {
+  height: 40%;
+  width: 40%;
+  top: 20%;
+  left: 4%;
+  z-index: 2;
+}
+.robot h2 {
+  position: absolute;
+  width: 100%;
+  top: 5%;
+  text-align: center;
+}
+.robot p {
+  position: absolute;
+  width: 40%;
+  top: 18%;
+  left: 50%;
+}
+.robot button {
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  width: 30%;
+  border-radius: 20px;
+  height: 40px;
+}
+.safe{
+    width: 26.6%;
     height: 100%;
     float: left;
     background-color: #bff7ff;
 }
-.robot{
-    width: 26.6%;
-    height: 100%;
-    float: left;
-    background-color: #bff7ff; 
-}
-.is{
-    width: 26.6%;
-    height: 100%;
-    float: left;
-    background-color: #bff7ff;
+#bottom {
+  position: absolute;
+  top: 74vh;
+  left: 0vw;
 }
 </style>
