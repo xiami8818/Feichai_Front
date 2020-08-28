@@ -1,5 +1,5 @@
 <template>
-  <div class="index" ref="index">
+  <div class="index">
     <p class="welcome" v-if="computer">WELCOME</p>
     <p class="welcome" v-if="phone">废柴工作室</p>
     <button class="hamburger" v-if="phone" @click="showMenu">
@@ -32,12 +32,17 @@
         :clickEffect="true"
         clickMode="repulse"
     ></vue-particles>
+    <Bottom id="bottom"></Bottom>
   </div>
 </template>
 <script>
 import axios from 'axios';
+import Bottom from "@/components/bottom/Bottom";
 export default {
   name: 'Index',
+  components: {
+    Bottom
+  },
   computed: {
     phone(){
       return document.documentElement.clientWidth<document.documentElement.clientHeight;
@@ -179,5 +184,9 @@ a {
     left: calc(100% - 16vw);
     width: 10vw;
     background-color: rgba(0,0,0,0);
+  }
+  #bottom {
+    position: absolute;
+    top: 88vh;
   }
 </style>

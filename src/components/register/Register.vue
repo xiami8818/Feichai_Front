@@ -7,7 +7,7 @@
             <input type="password" v-model="confirmPwd" id="confirmPwd" name="username" lay-verify="required" placeholder="请确认您的密码" autocomplete="off" class="layui-input">
             <img src="/right.png" v-if="confirm&confirmPwd!=''" />
             <p id="message">{{message}}</p>
-         <router-link @click="register" id="commit" to="/PerInfo">注册</router-link>
+        <p @click="register" id="commit">注册</p>
     </div>
 </template>
 <script>
@@ -52,20 +52,17 @@
                     console.log(res);
                     if (res.data == 'succeed') {
                         that.$parent.registerView = false;
-                        that.$parent.$parent.register = true;
+                        that.$parent.$parent.login = true;
                         that.$parent.phoneNum = that.phone;
                         //axios.get("http://localhost:80")
                     }else if(res.data == 'existed'){
                         that.message = '该手机号已注册';
                         console.log(res.data);
                         return ;
-                    }else{
-                        that.$parent.$parent.register= false;
                     }
                 }).catch(function () {
                     console.log("error");
                    this.message="error";
-                    that.$parent.$parent.registerView = false;
                 })
             }
         },

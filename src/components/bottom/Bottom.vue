@@ -10,11 +10,8 @@ name: "Bottom"
 </script>
 <style scoped>
   #bottom {
-    position: absolute;
-    top: calc(100% - 4rem);
     height: 10vh;
     background-color: gray;
-    margin: 0.2rem;
     width: 100vw;
   }
   #icp {
