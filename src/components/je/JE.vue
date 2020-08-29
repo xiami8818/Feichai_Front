@@ -43,10 +43,10 @@
         </div>
         <div class="account" v-if="selected3=='selected'">
           <h2>社团账目(Corporate accounts)</h2>
-          <span>360.00 元</span>
+          <span>{{money}} 元</span>
           <div>
             <p id="tip">账本明细：</p>
-            <textarea id="details" disabled="disabled"></textarea>
+            <textarea id="details" disabled="disabled" v-model="account"></textarea>
           </div>
         </div>
       </div>
@@ -55,6 +55,7 @@
 </template>
 <script>
 import Bottom from "@/components/bottom/Bottom";
+import axios from "axios";
     export default {
       name: "JE",
       components: {
@@ -85,14 +86,30 @@ import Bottom from "@/components/bottom/Bottom";
           this.selected2 = 'unselected';
           this.selected0 = 'unselected';
         },
+        getMoney() {
+          const that = this;
+          axios.get("http://localhost/user/account").then(function (res){
+            let temp1 = res.data.split("$");
+            that.money = temp1[0];
+            let temp2 = temp1[1].split("#");
+            temp2.forEach(function (account){
+              that.account += account+"\n";
+            });
+          })
+        }
       },
       data(){
         return {
           selected0:'selected',
           selected1: 'unselected',
           selected2: 'unselected',
-          selected3: 'unselected'
+          selected3: 'unselected',
+          money: '0',
+          account: ''
         }
+      },
+      mounted() {
+        this.getMoney();
       }
     }
 </script>
@@ -334,6 +351,8 @@ import Bottom from "@/components/bottom/Bottom";
   position: relative;
   height: 83%;
   width: 99%;
+  text-line-through-style: center;
+  font-size: 1.4rem;
 }
 #bottom {
   position: absolute;
