@@ -51,7 +51,7 @@
                     console.log(res);
                     if (res.data == '$succeed') {
                         that.$parent.registerView = false;
-                        that.$parent.$parent.login = true;
+                        that.$parent.$parent.register = true;
                         that.$parent.phoneNum = that.phone;
                         that.$router.push('/perInfo');
                     }else if(res.data == '$existed'){
