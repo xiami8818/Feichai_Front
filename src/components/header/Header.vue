@@ -46,11 +46,14 @@ import axios from "axios";
         },
         check(){
           const that = this;
-          axios.get("http://47.100.137.63:8080/user/check").then(function (res){
+          axios.get("http://localhost:80/user/check").then(function (res){
             if(res.data=='$false'){
               return ;
             }else{
-              axios.get("http://47.100.137.63:8080/user/getInfo?phone="+res.data).then(function (response){
+              axios.get("http://localhost:80/user/getInfo").then(function (response){
+                if(response.data == "$false"){
+                  return ;
+                }
                 let temp = response.data.split("&");
                 that.name = temp[0];
                 that.header = temp[1];
@@ -60,13 +63,15 @@ import axios from "axios";
           })
         },
         logout(){
-          axios.post("http://localhost:8080/user/logout");
-          this.login = false;
-          this.header = '/unLogin.jpg';
-          if(this.$route.path=="/perInfo"){
-            this.$router.push('/index');
+          const that = this;
+          axios.post("http://localhost:80/user/logout").then(function (){
+            that.login = false;
+            that.header = '/unLogin.jpg';
+            if(that.$route.path=="/perInfo") {
+              that.$router.push('/index');
+            }
+          });
           }
-        }
       },
       computed: {
         phone() {

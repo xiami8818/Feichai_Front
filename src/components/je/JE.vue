@@ -33,16 +33,21 @@
           我社团在比赛中也会多次拿到奖项，去年我社团两组拿到特等奖，充分说明了JE发明创造协会机器人组的实力。欢迎喜欢电子科技的你加入我们！</p>
           <button>报名机器人组</button>
         </div>
-        <div class="safe" v-if="select2=='selected'">
-          <img src="../../../public/safe1.png" id="is">
-          <h3 id="title2">网络安全(Internet security)</h3>
-          <p id="word1">网络安全于我们的生活息息相关，学习网络安全有利于保护我们的隐私不被窃取、保护我们的利益不被侵害。对于一些网络上的不法行为，我们
-            可以也做出正确的回击。网络安全也需要我们大家的努力去维护，在这里你会了解不一样的网络安全，你也会懂得黑客们是如何盗走你的数据和信息的，这对于你
-            以后维护自己的电脑也有很大的帮助。
+        <div class="safe" v-if="selected2=='selected'">
+          <img src="../../../public/safe1.png" />
+          <h2>网络安全(Internet security)</h2>
+          <p>网络安全于我们的生活息息相关，学习网络安全有利于保护我们的隐私不被窃取、保护我们的利益不被侵害。对于一些网络上的不法行为，我们
+            可以也做出正确的回击。我们会教授常见漏洞攻击原理及防护（ARP欺骗，SQL注入，XSS跨站脚本，外挂原理等），欢迎喜欢网络安全的朋友们加入我们！
           </p>
+          <button>报名网络安全组</button>
         </div>
         <div class="account" v-if="selected3=='selected'">
-
+          <h2>社团账目(Corporate accounts)</h2>
+          <span>360.00 元</span>
+          <div>
+            <p id="tip">账本明细：</p>
+            <textarea id="details" disabled="disabled"></textarea>
+          </div>
         </div>
       </div>
       <Bottom id="bottom"></Bottom>
@@ -92,6 +97,10 @@ import Bottom from "@/components/bottom/Bottom";
     }
 </script>
 <style scoped>
+@font-face {
+  font-family: hjlzt;
+  src: url("../../assets/font/hjlzt.ttf");
+}
 #je{
   position: absolute;
   top: 14vh;
@@ -255,10 +264,76 @@ import Bottom from "@/components/bottom/Bottom";
   height: 40px;
 }
 .safe{
-    width: 26.6%;
+    width: 80vw;
     height: 100%;
-    float: left;
-    background-color: #bff7ff;
+    background-color: ghostwhite;
+}
+.safe img {
+  position: absolute;
+  height: 40%;
+  top: 16%;
+  left: 12%;
+}
+.safe h2 {
+  position: absolute;
+  width: 100%;
+  top: 5%;
+  text-align: center;
+}
+.safe p {
+  position: absolute;
+  width: 42%;
+  top: 16%;
+  left: 40%;
+}
+.safe button {
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  width: 30%;
+  border-radius: 20px;
+  height: 40px;
+}
+.account {
+  position: absolute;
+  height: 100%;
+  width: 80vw;
+}
+.account h2 {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 5%;
+}
+.account span {
+  position: absolute;
+  font-size: 3rem;
+  font-family: hjlzt;
+  top: 20%;
+  left: 10%;
+}
+.account div {
+  position: absolute;
+  top: 18%;
+  left: 40%;
+  height: 60%;
+  width: 40%;
+  border: 2px solid #ffda00;
+}
+#tip {
+  position: relative;
+  width: 100%;
+  height: 16%;
+  text-align: center;
+  margin: 0 0 0 0;
+  font-size: 1.6rem;
+  background-color: cadetblue;
+}
+#details {
+  resize: none;
+  position: relative;
+  height: 83%;
+  width: 99%;
 }
 #bottom {
   position: absolute;
