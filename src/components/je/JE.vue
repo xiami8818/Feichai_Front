@@ -133,6 +133,7 @@ import axios from "axios";
 }
 .selected {
   background-color: coral;
+  border-left: red solid 6px;
 }
 .unselected {
   background-color: ghostwhite;

@@ -13,17 +13,19 @@
         </div>
       <div id="personInfo1">
        <p>基本信息</p>
-          <label class="layui-form-label " >姓名：</label>
-          <input type="text"  name="username"  lay-verify="required" placeholder="请输入您的真实姓名" ><span></span>
-          <label class="layui-form-label " > QQ：</label>
-          <input type="text"  name="username"  lay-verify="required" placeholder="请输入您的QQ号" ><span></span>
-          <label class="layui-form-label " >学号：</label>
-          <input type="text"  name="username"  lay-verify="required" placeholder="请输入您的学号" ><span></span>
-          <label class="layui-form-label">性别：</label><input type="radio">
-          <label class="layui-form-label" id="school">学校：</label>
-          <input type="text"  name="username"  lay-verify="required" placeholder="请输入您的学校" ><span></span>
-          <button>保存</button>
-          <button>恢复</button>
+          <label class="tip " id="nameTip">姓名：</label>
+          <input type="text" class="text" id="nameText" name="username"  lay-verify="required" placeholder="请输入您的真实姓名" v-model="newName" />
+        <label class="tip" id="qqTip"> QQ：</label>
+          <input type="text" id="qqText" class="text" name="username"  lay-verify="required" placeholder="请输入您的QQ号" v-model="newQQ" />
+          <label class="tip" id="numTip">学号：</label>
+          <input type="text" class="text" id="numText" name="username"  lay-verify="required" placeholder="请输入您的学号" v-model="newNum" />
+        <label class="sexTip" id="sexTip">性别：</label>
+        <label id="man"><input name="sex" type="radio" @click="man">男</label>
+        <label id="woman"><input type="radio" name="sex" @click="woman">女</label>
+          <label class="tip" id="schoolTip">学校：</label>
+          <input type="text" class="text" id="schoolText" lay-verify="required" placeholder="请输入您的学校" v-model="newSchool" /><span></span>
+          <button id="save" :disabled="isChanged">保存</button>
+          <button id="recovery">恢复</button>
       </div>
       <Bottom id="bottom"></Bottom>
     </div>
@@ -31,10 +33,84 @@
 
 <script>
 import Bottom from "@/components/bottom/Bottom";
+import axios from "axios";
     export default {
         name: "PerInfo",
       components: {
           Bottom
+      },
+      methods: {
+          man(){
+            this.sex = '男';
+          },
+        woman(){
+            this.sex = '女';
+        },
+        save() {
+
+        },
+        getUsre(){
+            axios.post("http://localhost/user/getUser").then(function (res){
+              let temp = res.data.split("$");
+              this.name = temp[0];
+              this.qq = temp[1];
+              this.num = temp[2];
+              this.sex = temp[3];
+              this.school = temp[4];
+              this.newName = this.name;
+              this.newQQ = this.qq;
+              this.newNum = this.num;
+              this.newSex = this.sex;
+              this.newSchool = this.school;
+            })
+        }
+      },
+      data(){
+          return {
+            sex:'',
+            name:'',
+            qq:'',
+            num:'',
+            school: '',
+            newSex: '',
+            newName:'',
+            newQQ:'',
+            newNum:'',
+            newSchool:'',
+            isChanged:'disabled'
+          }
+      },
+      mounted() {
+
+      },
+      watch: {
+          newName: function (){
+            if(this.newName != this.name){
+              this.isChanged = false;
+            }else {
+              this.isChanged = 'disabled';
+            }
+          }
+        //   isChanged: function () {
+        //     let sign = false;
+        //     if(this.name != this.newName){
+        //       console.log("no")
+        //       sign = true;
+        //   }else if(this.qq != this.newQQ){
+        //       sign = true;
+        //     }else if(this.num != this.newNum){
+        //       sign =true;
+        //     }else if(this.sex !=this.newSex){
+        //       sign = true;
+        //     }else if(this.school != this.newSchool){
+        //       sign = true;
+        //     }
+        //     if(sign){
+        //       return false;
+        //     }else {
+        //       return 'disabled';
+        //     }
+        // }
       }
     }
 </script>
@@ -63,12 +139,12 @@ import Bottom from "@/components/bottom/Bottom";
     height: 100%;
 }
 #personInfo {
+  position: absolute;
   margin-top: 7vh;
   margin-left: 5vw;
   width: 24vw;
   height: 60vh;
   border: 2px solid cadetblue;
-    float: left;
 }
 #personInfo img{
   position: relative;
@@ -82,12 +158,6 @@ import Bottom from "@/components/bottom/Bottom";
   position: relative;
   width: 100%;
   text-align: center;
-}
-#img
-#word{
-   height: 7vh;
-    background: #bff7ff;
-    margin-top: 2rem;
 }
 #word1{
     -webkit-margin-before: 0;
@@ -132,12 +202,12 @@ import Bottom from "@/components/bottom/Bottom";
     margin-right: 0.5rem;
 }
 #personInfo1{
-   margin-left: 3vw;
-    margin-top: 6vh;
+  position: absolute;
+   left: 36vw;
+  top: 18vh;
     width: 60vw;
     height: 63vh;
     background-color: #fff9fc;
-    float: left;
 }
 #personInfo1 p{
     margin-left: 3vw;
@@ -146,23 +216,99 @@ import Bottom from "@/components/bottom/Bottom";
     font-family: 新宋体;
     float: left;
 }
-#personInfo1 label{
-    margin-left: 5vw;
-    margin-top: 0.3rem;
-    width: 5vw;
-    float: left;
+.tip{
+    width: 10%;
+  height: 5%;
 }
-#personInfo1 input{
-    width: 40vw;
+.text {
+    width: 46%;
     margin-bottom: 0.5rem;
     height: 5vh;
-    float: left;
 }
-#personInfo1 button{
-    margin-left: 10vw;
-    margin-top: 3vh;
-    height: 5vh;
-    width: 5vw;
-    float: right;
+#nameTip {
+  position: absolute;
+  top: 16%;
+  left: 14%;
+}
+#nameText {
+  position: absolute;
+  top: 15%;
+  left: 22%;
+}
+#qqTip {
+  position: absolute;
+  top: 30%;
+  left: 14%;
+}
+#qqText {
+  position: absolute;
+  top: 29%;
+  left: 22%;
+}
+#numTip {
+  position: absolute;
+  top: 44%;
+  left: 14%;
+}
+#numText {
+  position: absolute;
+  top: 43%;
+  left: 22%;
+}
+#schoolTip {
+  position: absolute;
+  top: 72%;
+  left: 14%;
+}
+#schoolText {
+  position: absolute;
+  top: 71%;
+  left: 22%;
+}
+#sexTip {
+  position: absolute;
+  top: 58%;
+  left: 14%;
+}
+#man {
+  position: absolute;
+  top: 57%;
+  left: 22%;
+  font-size: 1.4rem;
+}
+#man input {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+#woman {
+  position: absolute;
+  top: 57%;
+  left: 30%;
+  font-size: 1.4rem;
+}
+#woman input {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+#recovery {
+  position: absolute;
+  top: 6%;
+
+  left: 80%;
+  width: 8%;
+  height: 6%;
+  background-color: #e6f3ff;
+  border: 0;
+}
+#save {
+  position: absolute;
+  top: 6%;
+  left: 90%;
+  width: 8%;
+  height: 6%;
+  background-color: #e6f3ff;
+  border: 0;
 }
 </style>
