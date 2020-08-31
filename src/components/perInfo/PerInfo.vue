@@ -47,7 +47,14 @@ import axios from "axios";
             this.newSex = '女';
         },
         save() {
-
+            const that = this;
+          axios.post("http://localhost/user/setUser?trueName="+that.trueName+"&qq="+that.qq+"&num="+that.num+"&sex="+that.sex+"&school="+that.school).then(function (res){
+            if(res == "$success"){
+              that.$route.go(0);
+            }else {
+              alert("修改失败");
+            }
+          });
         },
         recovery(){
             this.newName = this.name;
@@ -70,6 +77,10 @@ import axios from "axios";
         getUsre(){
             const that = this;
             axios.get("http://localhost/user/getUser").then(function (res){
+              if(res.data == '$false'){
+                that.$route.push('/index');
+                return ;
+              }
               let temp = res.data.split("$");
               that.trueName = temp[0];
               that.qq = temp[1];
