@@ -24,7 +24,7 @@
         <label id="woman"><input type="radio" name="sex" @click="woman" id="womanRadio" />女</label>
           <label class="tip" id="schoolTip">学校：</label>
           <input type="text" class="text" id="schoolText" lay-verify="required" placeholder="请输入您的学校" v-model="newSchool" /><span></span>
-          <button id="save" :disabled="isChanged">保存</button>
+          <button id="save" :disabled="isChanged" @click="save">保存</button>
           <button id="recovery" @click="recovery" :disabled="isChanged1">恢复</button>
       </div>
       <Bottom id="bottom"></Bottom>
@@ -52,8 +52,10 @@ import axios from "axios";
             if(res == "$success"){
               that.$route.go(0);
             }else {
-              alert("修改失败");
+              alert("修改失败！");
             }
+          }).catch(function (){
+            alert("发生未知错误！");
           });
         },
         recovery(){
