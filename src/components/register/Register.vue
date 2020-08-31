@@ -53,6 +53,7 @@
                         that.$parent.registerView = false;
                         that.$parent.$parent.register = true;
                         that.$parent.phoneNum = that.phone;
+                        that.$parent.check();
                         that.$router.push('/perInfo');
                     }else if(res.data == '$existed'){
                         that.message = '该手机号已注册';

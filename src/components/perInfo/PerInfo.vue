@@ -14,7 +14,7 @@
       <div id="personInfo1">
        <p>基本信息</p>
           <label class="tip " id="nameTip">姓名：</label>
-          <input type="text" class="text" id="nameText" name="username"  lay-verify="required" placeholder="请输入您的真实姓名" v-model="newName" />
+          <input type="text" class="text" id="nameText" name="username"  lay-verify="required" placeholder="请输入您的真实姓名" v-model="newTrueName" />
         <label class="tip" id="qqTip"> QQ：</label>
           <input type="text" id="qqText" class="text" name="username"  lay-verify="required" placeholder="请输入您的QQ号" v-model="newQQ" />
           <label class="tip" id="numTip">学号：</label>
@@ -71,7 +71,6 @@ import axios from "axios";
             const that = this;
             axios.get("http://localhost/user/getUser").then(function (res){
               let temp = res.data.split("$");
-              console.log(temp[0]);
               that.trueName = temp[0];
               that.qq = temp[1];
               that.num = temp[2];
@@ -84,7 +83,7 @@ import axios from "axios";
               that.school = temp[4];
               that.img = temp[5];
               that.name = temp[6];
-              that.newName = that.name;
+              that.newTrueName = that.trueName;
               that.newQQ = that.qq;
               that.newNum = that.num;
               that.newSex = that.sex;
@@ -97,6 +96,7 @@ import axios from "axios";
             sex:'',
             name:'',
             trueName: '',
+            newTrueName: '',
             qq:'',
             num:'',
             school: '',
@@ -114,8 +114,8 @@ import axios from "axios";
         this.getUsre();
       },
       watch: {
-        newName: function () {
-          if (this.newName != this.name) {
+        newTrueName: function () {
+          if (this.newTrueName != this.trueName) {
             this.isChanged = false;
             this.isChanged1 = false;
           } else {
@@ -124,7 +124,7 @@ import axios from "axios";
               this.isChanged = 'disabled';
             }
           }
-          if(this.newName == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+          if(this.newTrueName == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
             this.isChanged = 'disabled';
           }
         },
@@ -133,12 +133,12 @@ import axios from "axios";
             this.isChanged = false;
             this.isChanged1 = false;
           } else {
-            if(this.newName == this.name && this.newNum ==this.num && this.newSex == this.sex && this.newSchool == this.school){
+            if(this.newTrueName == this.trueName && this.newNum ==this.num && this.newSex == this.sex && this.newSchool == this.school){
               this.isChanged = 'disabled';
             }
             this.isChanged1 = 'disabled';
           }
-          if(this.newQQ == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+          if(this.newQQ == '' || this.newNum == '' || this.newTrueName == '' || this.newSex == '' || this.newSchool == ''){
             this.isChanged = 'disdabled';
           }
         },
@@ -147,12 +147,12 @@ import axios from "axios";
             this.isChanged = false;
             this.isChanged1=false;
           } else {
-            if(this.newQQ == this.qq && this.newName ==this.name && this.newSex == this.sex && this.newSchool == this.school){
+            if(this.newQQ == this.qq && this.newTrueName ==this.trueName && this.newSex == this.sex && this.newSchool == this.school){
               this.isChanged = 'disabled';
             }
             this.isChanged1 = 'disabled';
           }
-          if(this.newNum == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+          if(this.newNum == '' || this.newTrueName == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
             this.isChanged = 'disdabled';
           }
         },
@@ -161,12 +161,12 @@ import axios from "axios";
             this.isChanged = false;
             this.isChanged1 = false;
           } else {
-            if(this.newQQ == this.qq && this.newNum ==this.num && this.newName == this.name && this.newSchool == this.school){
+            if(this.newQQ == this.qq && this.newNum ==this.num && this.newTrueName == this.trueName && this.newSchool == this.school){
               this.isChanged = 'disabled';
             }
             this.isChanged1 = 'disabled';
           }
-          if(this.newSex == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+          if(this.newTrueName == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
             this.isChanged = 'disdabled';
           }
         },
@@ -175,12 +175,12 @@ import axios from "axios";
             this.isChanged = false;
             this.isChanged1 = false;
           } else {
-            if(this.newQQ == this.qq && this.newNum ==this.num && this.newSex == this.sex && this.newName == this.name){
+            if(this.newQQ == this.qq && this.newNum ==this.num && this.newSex == this.sex && this.newTrueName == this.trueName){
               this.isChanged = 'disabled';
             }
             this.isChanged1 = 'disabled';
           }
-          if(this.newSchool == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+          if(this.newTrueName == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
             this.isChanged = 'disdabled';
           }
         }
