@@ -7,8 +7,8 @@
                <p id="word1">账号管理</p>
                </div>
             <ul id="list">
-            <li id="list1"><span><i class="iconfont">&#xe6b8;</i>基本信息</span></li>
-            <li id="list2"><span><i class="iconfont">&#xe6ae;</i>安全设置</span></li>
+            <li id="list1"><span><i class="iconfont">&#xe6b8;</i>个人信息</span></li>
+            <li id="list2"><span><i class="iconfont">&#xe6ae;</i>账号设置</span></li>
             </ul>
         </div>
       <div id="personInfo1">
@@ -48,9 +48,10 @@ import axios from "axios";
         },
         save() {
             const that = this;
-          axios.post("http://localhost/user/setUser?trueName="+that.trueName+"&qq="+that.qq+"&num="+that.num+"&sex="+that.sex+"&school="+that.school).then(function (res){
-            if(res == "$success"){
-              that.$route.go(0);
+          axios.post("http://localhost/user/setUser?trueName="+that.newTrueName+"&qq="+that.newQQ+"&num="+that.newNum+"&sex="+that.newSex+"&school="+that.newSchool).then(function (res){
+            if(res.data == "$success"){
+              console.log("true");
+              that.$router.go(0);
             }else {
               alert("修改失败！");
             }
@@ -59,7 +60,7 @@ import axios from "axios";
           });
         },
         recovery(){
-            this.newName = this.name;
+            this.newTrueName = this.trueName;
             this.newQQ = this.qq;
            this.newNum = this.num;
            this.newSex = this.sex;
