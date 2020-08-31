@@ -1,8 +1,8 @@
 <template>
     <div id="pi">
         <div id="personInfo">
-              <img src="http://47.100.137.63:8080/boy.jpg">
-              <h2>赵腾达</h2>
+              <img :src="img">
+              <h2>{{name}}</h2>
                <div id="word">
                <p id="word1">账号管理</p>
                </div>
@@ -20,12 +20,12 @@
           <label class="tip" id="numTip">学号：</label>
           <input type="text" class="text" id="numText" name="username"  lay-verify="required" placeholder="请输入您的学号" v-model="newNum" />
         <label class="sexTip" id="sexTip">性别：</label>
-        <label id="man"><input name="sex" type="radio" @click="man">男</label>
-        <label id="woman"><input type="radio" name="sex" @click="woman">女</label>
+        <label id="man"><input name="sex" type="radio" @click="man" id="manRadio" />男</label>
+        <label id="woman"><input type="radio" name="sex" @click="woman" id="womanRadio" />女</label>
           <label class="tip" id="schoolTip">学校：</label>
           <input type="text" class="text" id="schoolText" lay-verify="required" placeholder="请输入您的学校" v-model="newSchool" /><span></span>
           <button id="save" :disabled="isChanged">保存</button>
-          <button id="recovery">恢复</button>
+          <button id="recovery" @click="recovery" :disabled="isChanged1">恢复</button>
       </div>
       <Bottom id="bottom"></Bottom>
     </div>
@@ -41,27 +41,54 @@ import axios from "axios";
       },
       methods: {
           man(){
-            this.sex = '男';
+            this.newSex = '男';
           },
         woman(){
-            this.sex = '女';
+            this.newSex = '女';
         },
         save() {
 
         },
+        recovery(){
+            this.newName = this.name;
+            this.newQQ = this.qq;
+           this.newNum = this.num;
+           this.newSex = this.sex;
+           console.log(this.sex+" "+this.newSex);
+           if(this.sex =='男'){
+             document.getElementById('manRadio').checked = 'checked';
+             document.getElementById('womanRadio').checked = false;
+           }else if(this.sex =='女'){
+             document.getElementById("manRadio").checked = false;
+             document.getElementById('womanRadio').checked = 'checked';
+           }else {
+             document.getElementById("manRadio").checked = false;
+             document.getElementById('womanRadio').checked = false;
+           }
+           this.newSchool = this.school;
+        },
         getUsre(){
-            axios.post("http://localhost/user/getUser").then(function (res){
+            const that = this;
+            axios.get("http://localhost/user/getUser").then(function (res){
               let temp = res.data.split("$");
-              this.name = temp[0];
-              this.qq = temp[1];
-              this.num = temp[2];
-              this.sex = temp[3];
-              this.school = temp[4];
-              this.newName = this.name;
-              this.newQQ = this.qq;
-              this.newNum = this.num;
-              this.newSex = this.sex;
-              this.newSchool = this.school;
+              console.log(temp[0]);
+              that.trueName = temp[0];
+              that.qq = temp[1];
+              that.num = temp[2];
+              that.sex = temp[3];
+              if(temp[3] == '男'){
+                document.getElementById("manRadio").checked = 'checked';
+              }else if(temp[3] == '女'){
+                document.getElementById("womanRadio").checked = 'checked';
+              }
+              that.school = temp[4];
+              that.img = temp[5];
+              that.name = temp[6];
+              that.newName = that.name;
+              that.newQQ = that.qq;
+              that.newNum = that.num;
+              that.newSex = that.sex;
+              that.newSchool = that.school;
             })
         }
       },
@@ -69,48 +96,94 @@ import axios from "axios";
           return {
             sex:'',
             name:'',
+            trueName: '',
             qq:'',
             num:'',
             school: '',
+            img: '/unLogin.jpg',
             newSex: '',
             newName:'',
             newQQ:'',
             newNum:'',
             newSchool:'',
-            isChanged:'disabled'
+            isChanged:'disabled',
+            isChanged1: 'disabled'
           }
       },
       mounted() {
-
+        this.getUsre();
       },
       watch: {
-          newName: function (){
-            if(this.newName != this.name){
-              this.isChanged = false;
-            }else {
+        newName: function () {
+          if (this.newName != this.name) {
+            this.isChanged = false;
+            this.isChanged1 = false;
+          } else {
+            this.isChanged1 = 'disabled';
+            if(this.newQQ == this.qq && this.newNum ==this.num && this.newSex == this.sex && this.newSchool == this.school){
               this.isChanged = 'disabled';
             }
           }
-        //   isChanged: function () {
-        //     let sign = false;
-        //     if(this.name != this.newName){
-        //       console.log("no")
-        //       sign = true;
-        //   }else if(this.qq != this.newQQ){
-        //       sign = true;
-        //     }else if(this.num != this.newNum){
-        //       sign =true;
-        //     }else if(this.sex !=this.newSex){
-        //       sign = true;
-        //     }else if(this.school != this.newSchool){
-        //       sign = true;
-        //     }
-        //     if(sign){
-        //       return false;
-        //     }else {
-        //       return 'disabled';
-        //     }
-        // }
+          if(this.newName == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+            this.isChanged = 'disabled';
+          }
+        },
+        newQQ: function () {
+          if (this.newQQ != this.qq) {
+            this.isChanged = false;
+            this.isChanged1 = false;
+          } else {
+            if(this.newName == this.name && this.newNum ==this.num && this.newSex == this.sex && this.newSchool == this.school){
+              this.isChanged = 'disabled';
+            }
+            this.isChanged1 = 'disabled';
+          }
+          if(this.newQQ == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+            this.isChanged = 'disdabled';
+          }
+        },
+        newNum: function () {
+          if (this.newNum != this.num) {
+            this.isChanged = false;
+            this.isChanged1=false;
+          } else {
+            if(this.newQQ == this.qq && this.newName ==this.name && this.newSex == this.sex && this.newSchool == this.school){
+              this.isChanged = 'disabled';
+            }
+            this.isChanged1 = 'disabled';
+          }
+          if(this.newNum == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+            this.isChanged = 'disdabled';
+          }
+        },
+        newSex: function () {
+          if (this.newSex != this.sex) {
+            this.isChanged = false;
+            this.isChanged1 = false;
+          } else {
+            if(this.newQQ == this.qq && this.newNum ==this.num && this.newName == this.name && this.newSchool == this.school){
+              this.isChanged = 'disabled';
+            }
+            this.isChanged1 = 'disabled';
+          }
+          if(this.newSex == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+            this.isChanged = 'disdabled';
+          }
+        },
+        newSchool: function () {
+          if (this.newSchool != this.school) {
+            this.isChanged = false;
+            this.isChanged1 = false;
+          } else {
+            if(this.newQQ == this.qq && this.newNum ==this.num && this.newSex == this.sex && this.newName == this.name){
+              this.isChanged = 'disabled';
+            }
+            this.isChanged1 = 'disabled';
+          }
+          if(this.newSchool == '' || this.newNum == '' || this.newQQ == '' || this.newSex == '' || this.newSchool == ''){
+            this.isChanged = 'disdabled';
+          }
+        }
       }
     }
 </script>
