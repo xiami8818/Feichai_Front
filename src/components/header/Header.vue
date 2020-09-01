@@ -5,7 +5,7 @@
           <router-link class="menu" to="/" v-if="computer">首页</router-link>
           <a class="menu" href="http://feichai.xyz/oj" v-if="computer">OJ平台</a>
           <router-link class="menu" to="/je" v-if="computer">社团信息</router-link>
-          <a class="menu" href="http://feichai.xyz/analyse.html" v-if="computer">视频解析</a>
+          <a class="menu" href="/analyse" v-if="computer">视频解析</a>
           <a class="menu" href="https://qm.qq.com/cgi-bin/qm/qr?k=aDA0sMTX1efgrUsLIPOsrayVwYMjsOR8&jump_from=webapi" v-if="computer">关于我们</a>
       <div id="loginDivC" v-if="computer">
         <img :src=this.header id="head-img" />
