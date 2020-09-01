@@ -46,11 +46,11 @@ import axios from "axios";
         },
         check(){
           const that = this;
-          axios.get("http://localhost:80/user/check").then(function (res){
+          axios.get("http://47.100.137.63:8080/user/check").then(function (res){
             if(res.data=='$false'){
               return ;
             }else{
-              axios.get("http://localhost:80/user/getInfo").then(function (response){
+              axios.get("http://47.100.137.63:8080/user/getInfo").then(function (response){
                 if(response.data == "$false"){
                   return ;
                 }
@@ -64,7 +64,7 @@ import axios from "axios";
         },
         logout(){
           const that = this;
-          axios.post("http://localhost:80/user/logout").then(function (){
+          axios.post("http://47.100.137.63:8080/user/logout").then(function (){
             that.login = false;
             that.header = '/unLogin.jpg';
             if(that.$route.path=="/perInfo") {

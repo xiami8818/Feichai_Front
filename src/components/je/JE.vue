@@ -88,7 +88,7 @@ import axios from "axios";
         },
         getMoney() {
           const that = this;
-          axios.get("http://localhost/user/account").then(function (res){
+          axios.get("http://47.100.137.63:8080/user/account").then(function (res){
             let temp1 = res.data.split("$");
             that.money = temp1[0];
             let temp2 = temp1[1].split("#");

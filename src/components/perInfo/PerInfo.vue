@@ -48,7 +48,7 @@ import axios from "axios";
         },
         save() {
             const that = this;
-          axios.post("http://localhost/user/setUser?trueName="+that.newTrueName+"&qq="+that.newQQ+"&num="+that.newNum+"&sex="+that.newSex+"&school="+that.newSchool).then(function (res){
+          axios.post("http://47.100.137.63:8080/user/setUser?trueName="+that.newTrueName+"&qq="+that.newQQ+"&num="+that.newNum+"&sex="+that.newSex+"&school="+that.newSchool).then(function (res){
             if(res.data == "$success"){
               console.log("true");
               that.$router.go(0);
@@ -79,7 +79,7 @@ import axios from "axios";
         },
         getUsre(){
             const that = this;
-            axios.get("http://localhost/user/getUser").then(function (res){
+            axios.get("http://47.100.137.63:8080/user/getUser").then(function (res){
               if(res.data == '$false'){
                 that.$route.push('/index');
                 return ;
