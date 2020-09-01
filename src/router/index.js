@@ -28,5 +28,5 @@ const routes = [
         component: Analyse
     }
 ]
-const router = new Router({routes, mode:'history'})
+const router = new Router({routes, mode:'history',base: '/',build:{assetsPublicPath:'/'}})
 export default router
