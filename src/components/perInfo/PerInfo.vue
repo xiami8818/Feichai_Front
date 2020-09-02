@@ -43,6 +43,28 @@
           <hr id="horizon">
             <label class="nick" id="nickName">昵称</label>
             <label class="nickText" id="nickWord">Magnetic达</label>
+            <span id="modify" @click="changeBlock2">更改</span>
+            <div id="nickNameGroup" v-if="change2">
+              <label class="labelList" id="labelList1">请输入新的昵称</label>
+                <input class="inputList" id="inputList1">
+                <label class="labelList2" id="labelList13">不得超过10个字符</label>
+                <button class="buttonList" id="buttonList1">确定</button>
+                <button class="buttonList2" id="buttonList3" @click="off">取消</button>
+            </div>
+            <hr id="horizon1">
+             <label class="password" id="password1">密码</label>
+            <label class="passwordText" id="passwordWord">**********</label>
+            <span id="changePassword" @click="changeBlock3">修改</span>
+            <div id="passwordGroup" v-if="change3">
+                <label class="labelList4" id="labelList5">请输入新的密码</label>
+                <input class="inputList2" id="inputList3">
+                <label class="labelList8" id="labelList19">不得超过10位</label>
+                <label class="labelList6" id="labelList7">再次输入你的密码</label>
+                <input class="inputList4" id="inputList5">
+                <button class="buttonList4" id="buttonList5">确定</button>
+                <button class="buttonList6" id="buttonList7" @click="off">取消</button>
+            </div>
+            <hr id="horizon2">
         </div>
       <Bottom id="bottom"></Bottom>
     </div>
@@ -57,6 +79,11 @@ import axios from "axios";
           Bottom
       },
       methods: {
+            off(){
+                this.change1=false;
+                this.change2=false;
+                this.change3=false;
+            },
             changeBlock1(){
               this.change1=!this.change1;
                 this.change2=false;
@@ -68,14 +95,14 @@ import axios from "axios";
                 }
             },
           changeBlock2(){
-              this.change1='false';
-              this.change1='true';
-              this.change1='false';
+              this.change1=false;
+              this.change2=true;
+              this.change3=false;
           },
           changeBlock3(){
-              this.change1='false';
-              this.change1='false';
-              this.change1='true';
+              this.change1=false;
+              this.change2=false;
+              this.change3=true;
           },
         first(){
            this.firstName='true';
@@ -459,7 +486,7 @@ import axios from "axios";
     left: 32vw;
     top: 18vh;
     width: 60vw;
-    height: 63vh;
+    height: 68vh;
     background-color: #fff9fc;
 }
 #personInfo2 p{
@@ -492,7 +519,7 @@ import axios from "axios";
 #change{
     height: 5%;
     left:75%;
-    top: 20%;
+    top: 23%;
     cursor: pointer;
     color: #4cacff;
     position: absolute;
@@ -500,6 +527,7 @@ import axios from "axios";
 #horizon{
     width: 80%;
     position: relative;
+    margin-bottom: 2%;
 }
 #imgGroup{
     position: relative;
@@ -523,5 +551,189 @@ import axios from "axios";
 #nickWord{
     position: relative;
   margin-left: 27%;
+    top: 10%;
+}
+#modify{
+    height: 5%;
+    top: 10%;
+    margin-left:22%;
+    cursor: pointer;
+    color: #4cacff;
+    position: relative;
+}
+#horizon1{
+    width: 80%;
+    position: relative;
+    margin-bottom: 2%;
+}
+#nickNameGroup{
+    position: relative;
+    height: 30%;
+    width: 80%;
+    margin-left: 14%;
+}
+.labelList{
+    height: 5%;
+    width: 10%;
+}
+#labelList1{
+    position: relative;
+    margin-left: 5%;
+    top: 15%;
+}
+.inputList{
+   height: 15%;
+    width: 20%;
+}
+#inputList1{
+   position: relative;
+    top: 15%;
+    margin-left: 10%;
+}
+.labelList2{
+   height: 5%;
+    width: 10%;
+    color: darkgrey;
+}
+#labelList13{
+  position: relative;
+    margin-left: 5%;
+    top: 15%;
+}
+.buttonList{
+    width: 10%;
+    height: 25%;
+    background-color: #4cacff;
+    border-radius: 3rem;
+    border-style: none;
+    outline-style: none;
+}
+#buttonList1{
+  top: 30%;
+    position: relative;
+    margin-left: 20%;
+}
+.buttonList2{
+    width: 10%;
+    height: 25%;
+    border-radius: 3rem;
+    border-style: none;
+    outline-style: none;
+}
+#buttonList3{
+    top: 30%;
+    position: relative;
+    margin-left: 10%;
+}
+.password{
+  height: 5%;
+    width: 10%;
+    font-size: 1.2rem;
+}
+#password1{
+   position: relative;
+    margin-left: 10%;
+}
+.passwordText{
+    height: 5%;
+    width: 20%;
+}
+#passwordWord{
+    position: relative;
+    margin-left: 28%;
+}
+#changePassword{
+    height: 5%;
+    margin-left:23%;
+    cursor: pointer;
+    color: #4cacff;
+    position: relative;
+}
+#passwordGroup{
+    position: relative;
+    height: 40%;
+    width: 80%;
+    margin-left: 14%;
+}
+#horizon2{
+    width: 80%;
+    position: relative;
+    margin-bottom: 2%;
+}
+.labelList4{
+    height: 5%;
+    width: 20%;
+}
+#labelList5{
+    position: relative;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    top: 15%;
+}
+.inputList2{
+    height: 15%;
+    width: 35%;
+}
+#inputList3{
+    position: relative;
+    top: 15%;
+    margin-left: 5%;
+    margin-bottom: 2%;
+}
+.labelList8{
+    height: 5%;
+    width: 20%;
+    color: darkgrey;
+}
+#labelList19{
+    position: relative;
+    margin-left: 5%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    top: 15%;
+}
+.labelList6{
+    height: 5%;
+    width: 10%;
+}
+#labelList7{
+    position: relative;
+    margin-left: 5%;
+    top: 15%;
+}
+.inputList4{
+    height: 15%;
+    width: 40%;
+}
+#inputList5{
+    position: relative;
+    top: 15%;
+    margin-left: 2.5%;
+    margin-right: 10%;
+}
+.buttonList4{
+    width: 10%;
+    height: 25%;
+    background-color: #4cacff;
+    border-radius: 3rem;
+    border-style: none;
+    outline-style: none;
+}
+#buttonList5{
+    top: 30%;
+    position: relative;
+    margin-left: 20%;
+}
+.buttonList6{
+    width: 10%;
+    height: 25%;
+    border-radius: 3rem;
+    border-style: none;
+    outline-style: none;
+}
+#buttonList7{
+    top: 30%;
+    position: relative;
+    margin-left: 10%;
 }
 </style>
