@@ -7,11 +7,11 @@
                <p id="word1">账号管理</p>
                </div>
             <ul id="list">
-            <li id="list1"><span><i class="iconfont">&#xe6b8;</i>个人信息</span></li>
-            <li id="list2"><span><i class="iconfont">&#xe6ae;</i>账号设置</span></li>
+            <li id="list1" @click="first"><span><i class="iconfont">&#xe6b8;</i>个人信息</span></li>
+            <li id="list2" @click="second"><span><i class="iconfont">&#xe6ae;</i>账号设置</span></li>
             </ul>
         </div>
-      <div id="personInfo1">
+      <div id="personInfo1" v-if="firstName=='true'">
        <p>基本信息</p>
           <label class="tip " id="nameTip">姓名：</label>
           <input type="text" class="text" id="nameText" name="username"  lay-verify="required" placeholder="请输入您的真实姓名" v-model="newTrueName" />
@@ -27,6 +27,23 @@
           <button id="save" :disabled="isChanged" @click="save">保存</button>
           <button id="recovery" @click="recovery" :disabled="isChanged1">恢复</button>
       </div>
+        <div id="personInfo2" v-if="secondName=='true'">
+            <p>账号设置</p>
+            <label class="phone" id="phoneNum">头像</label>
+            <img src="http://47.100.137.63:8080/cat.jpg" id="img">
+            <span id="change" @click="changeBlock1">更换</span>
+            <hr id="horizon">
+            <div id="imgGroup" v-if="change1=='true'">
+                <img src="http://47.100.137.63:8080/cat.jpg" id="img1">
+                <img src="http://47.100.137.63:8080/boy.jpg" id="img2">
+                <img src="http://47.100.137.63:8080/cow.jpg" id="img3">
+                <img src="http://47.100.137.63:8080/girl.jpg" id="img4">
+                <img src="http://47.100.137.63:8080/pikachu.jpg" id="img5">
+                <img src="http://47.100.137.63:8080/ghost.jpg" id="img6">
+            </div>
+            <label class="nick" id="nickName">昵称</label>
+            <label class="nickText" id="nickWord">Magnetic达</label>
+        </div>
       <Bottom id="bottom"></Bottom>
     </div>
 </template>
@@ -40,6 +57,29 @@ import axios from "axios";
           Bottom
       },
       methods: {
+            changeBlock1(){
+              this.change1='true';
+                this.change2='false';
+                this.change3='false';
+            },
+          changeBlock2(){
+              this.change1='false';
+              this.change1='true';
+              this.change1='false';
+          },
+          changeBlock3(){
+              this.change1='false';
+              this.change1='false';
+              this.change1='true';
+          },
+        first(){
+           this.firstName='true';
+           this.secondName='false';
+      },
+        second(){
+           this.firstName='false';
+            this.secondName='true';
+      },
           man(){
             this.newSex = '男';
           },
@@ -121,7 +161,12 @@ import axios from "axios";
             newNum:'',
             newSchool:'',
             isChanged:'disabled',
-            isChanged1: 'disabled'
+            isChanged1: 'disabled',
+              firstName:'true',
+              secondName:'false',
+              change1:'false',
+              change2:'false',
+              change3:'false'
           }
       },
       mounted() {
@@ -222,29 +267,29 @@ import axios from "axios";
     -moz-osx-font-smoothing: grayscale;
 }
 #pi{
-  width: 100%;
+    width: 100%;
     height: 100%;
 }
 #personInfo {
-  position: absolute;
-  margin-top: 7vh;
-  margin-left: 5vw;
-  width: 24vw;
-  height: 60vh;
-  border: 2px solid cadetblue;
+    position: absolute;
+    margin-top: 7vh;
+    margin-left: 5vw;
+    width: 24vw;
+    height: 60vh;
+    border: 2px solid cadetblue;
 }
 #personInfo img{
-  position: relative;
+    position: relative;
     width: 20%;
     border-radius: 100%;
     border: solid black 1px;
     left: 40%;
-   top: 10px;
+    top: 10px;
 }
 #personInfo h2 {
-  position: relative;
-  width: 100%;
-  text-align: center;
+    position: relative;
+    width: 100%;
+    text-align: center;
 }
 #word1{
     -webkit-margin-before: 0;
@@ -255,11 +300,11 @@ import axios from "axios";
     padding-top: 0.5rem;
 }
 #bottom {
-  position: absolute;
-  top: 88vh;
+    position: absolute;
+    top: 88vh;
 }
 #list{
- list-style: none;
+    list-style: none;
     padding-left: 0;
 }
 #list1{
@@ -290,7 +335,7 @@ import axios from "axios";
 }
 #personInfo1{
   position: absolute;
-   left: 36vw;
+   left: 32vw;
   top: 18vh;
     width: 60vw;
     height: 63vh;
@@ -305,7 +350,8 @@ import axios from "axios";
 }
 .tip{
     width: 10%;
-  height: 5%;
+    height: 5%;
+    border-style: none;
 }
 .text {
     width: 46%;
@@ -313,14 +359,15 @@ import axios from "axios";
     height: 5vh;
 }
 #nameTip {
-  position: absolute;
-  top: 16%;
-  left: 14%;
+    position: absolute;
+    top: 16%;
+    left: 14%;
+    border-style: none;
 }
 #nameText {
-  position: absolute;
-  top: 15%;
-  left: 22%;
+    position: absolute;
+    top: 15%;
+    left: 22%;
 }
 #qqTip {
   position: absolute;
@@ -382,20 +429,131 @@ import axios from "axios";
 #recovery {
   position: absolute;
   top: 6%;
-
   left: 80%;
   width: 8%;
-  height: 6%;
+  height: 8%;
   background-color: #e6f3ff;
+  border-radius: 1rem;
   border: 0;
+  outline-style: none;
 }
 #save {
   position: absolute;
   top: 6%;
   left: 90%;
   width: 8%;
-  height: 6%;
+  height: 8%;
   background-color: #e6f3ff;
+  border-radius: 1rem;
+  outline-style: none;
   border: 0;
+}
+#personInfo2{
+    position: absolute;
+    left: 32vw;
+    top: 18vh;
+    width: 60vw;
+    height: 63vh;
+    background-color: #fff9fc;
+}
+#personInfo2 p{
+    margin-left: 3vw;
+    margin-top: 3vh;
+    width: 60vw;
+    font-family: 新宋体;
+    float: left;
+}
+.phone{
+   width: 10%;
+   height: 5%;
+}
+#phoneNum{
+   position: absolute;
+    top: 20%;
+    left: 10%;
+}
+#img{
+    left: 35%;
+    width: 10%;
+    height: 20%;
+    top:10%;
+    border-radius: 3rem;
+    position: absolute;
+}
+#img1{
+    width: 10%;
+    height: 100%;
+    border-radius: 3rem;
+    position: relative;
+}
+#img2{
+    width: 10%;
+    height: 100%;
+    border-radius: 3rem;
+    position: relative;
+}
+#img3{
+    width: 10%;
+    height: 100%;
+    border-radius: 3rem;
+    position: relative;
+}
+#img4{
+    width: 10%;
+    height: 100%;
+    border-radius: 3rem;
+    position: relative;
+}
+#img5{
+     width: 10%;
+     height: 100%;
+     border-radius: 3rem;
+     position: relative;
+ }
+#img6{
+    width: 10%;
+    height: 100%;
+    border-radius: 3rem;
+    position: relative;
+}
+#change{
+    height: 5%;
+    left:75%;
+    top: 20%;
+    cursor: pointer;
+    color: #4cacff;
+    position: absolute;
+}
+#horizon{
+    width: 80%;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+}
+#imgGroup{
+    position: absolute;
+    left: 20%;
+    top: 33%;
+    height: 20%;
+    width: 80%;
+    float: left;
+}
+.nick{
+    height: 5%;
+    width: 10%;
+}
+#nickName{
+    position: absolute;
+    top: 38%;
+    left: 10%;
+}
+.nickText{
+    height: 5%;
+    width: 40%;
+}
+#nickWord{
+    position: absolute;
+    top: 38%;
+    left: 35%;
 }
 </style>
