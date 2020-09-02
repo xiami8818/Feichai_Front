@@ -29,11 +29,10 @@
       </div>
         <div id="personInfo2" v-if="secondName=='true'">
             <p>账号设置</p>
-            <label class="phone" id="phoneNum">头像</label>
+            <label id="headerTip">头像</label>
             <img src="http://47.100.137.63:8080/cat.jpg" id="img">
-            <span id="change" @click="changeBlock1">更换</span>
-            <hr id="horizon">
-            <div id="imgGroup" v-if="change1=='true'">
+            <span id="change" @click="changeBlock1">{{changeHeader}}</span>
+            <div id="imgGroup" v-if="change1">
                 <img src="http://47.100.137.63:8080/cat.jpg" id="img1">
                 <img src="http://47.100.137.63:8080/boy.jpg" id="img2">
                 <img src="http://47.100.137.63:8080/cow.jpg" id="img3">
@@ -41,6 +40,7 @@
                 <img src="http://47.100.137.63:8080/pikachu.jpg" id="img5">
                 <img src="http://47.100.137.63:8080/ghost.jpg" id="img6">
             </div>
+          <hr id="horizon">
             <label class="nick" id="nickName">昵称</label>
             <label class="nickText" id="nickWord">Magnetic达</label>
         </div>
@@ -58,9 +58,14 @@ import axios from "axios";
       },
       methods: {
             changeBlock1(){
-              this.change1='true';
-                this.change2='false';
-                this.change3='false';
+              this.change1=!this.change1;
+                this.change2=false;
+                this.change3= false;
+                if(this.change1){
+                  this.changeHeader = '保存';
+                }else {
+                  this.changeHeader = '更换';
+                }
             },
           changeBlock2(){
               this.change1='false';
@@ -164,9 +169,10 @@ import axios from "axios";
             isChanged1: 'disabled',
               firstName:'true',
               secondName:'false',
-              change1:'false',
-              change2:'false',
-              change3:'false'
+              change1: false,
+              change2: false,
+              change3: false,
+            changeHeader:'更换'
           }
       },
       mounted() {
@@ -461,60 +467,27 @@ import axios from "axios";
     margin-top: 3vh;
     width: 60vw;
     font-family: 新宋体;
-    float: left;
 }
-.phone{
-   width: 10%;
-   height: 5%;
-}
-#phoneNum{
-   position: absolute;
-    top: 20%;
-    left: 10%;
+#headerTip{
+   position: relative;
+  margin-left: 10%;
+  height: 20%;
+  top: -4vh;
+  font-size: 1.2rem;
 }
 #img{
-    left: 35%;
+    margin-left: 26%;
     width: 10%;
     height: 20%;
-    top:10%;
-    border-radius: 3rem;
-    position: absolute;
-}
-#img1{
-    width: 10%;
-    height: 100%;
     border-radius: 3rem;
     position: relative;
 }
-#img2{
-    width: 10%;
-    height: 100%;
-    border-radius: 3rem;
-    position: relative;
-}
-#img3{
-    width: 10%;
-    height: 100%;
-    border-radius: 3rem;
-    position: relative;
-}
-#img4{
-    width: 10%;
-    height: 100%;
-    border-radius: 3rem;
-    position: relative;
-}
-#img5{
-     width: 10%;
-     height: 100%;
-     border-radius: 3rem;
-     position: relative;
- }
-#img6{
-    width: 10%;
-    height: 100%;
-    border-radius: 3rem;
-    position: relative;
+#imgGroup img {
+  position: relative;
+  border-radius: 100%;
+  height: 100%;
+  margin-left: 2%;
+  z-index: 2;
 }
 #change{
     height: 5%;
@@ -526,34 +499,29 @@ import axios from "axios";
 }
 #horizon{
     width: 80%;
-    position: absolute;
-    top: 30%;
-    left: 5%;
+    position: relative;
 }
 #imgGroup{
-    position: absolute;
-    left: 20%;
-    top: 33%;
+    position: relative;
     height: 20%;
     width: 80%;
-    float: left;
+  margin-left: 14%;
 }
 .nick{
     height: 5%;
     width: 10%;
 }
 #nickName{
-    position: absolute;
-    top: 38%;
-    left: 10%;
+    position: relative;
+  font-size: 1.2rem;
+  margin-left: 10%;
 }
 .nickText{
     height: 5%;
     width: 40%;
 }
 #nickWord{
-    position: absolute;
-    top: 38%;
-    left: 35%;
+    position: relative;
+  margin-left: 27%;
 }
 </style>
