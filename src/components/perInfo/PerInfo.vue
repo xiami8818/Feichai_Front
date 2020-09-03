@@ -505,7 +505,6 @@ import axios from "axios";
 #img{
     margin-left: 26%;
     width: 10%;
-    height: 20%;
     border-radius: 3rem;
     position: relative;
 }

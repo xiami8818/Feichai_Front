@@ -1,6 +1,6 @@
 <template>
   <div id="analyse">
-    <iframe id="player" :src="video">
+    <iframe id="player" :src="video" allowfullscreen="true">
     </iframe>
     <span v-if="video == ''" id="tip">废柴工作室</span>
     <span v-if="video == ''" id="tip1">本站仅供学习交流使用</span>
